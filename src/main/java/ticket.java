@@ -805,7 +805,10 @@ public class ticket extends javax.swing.JInternalFrame {
     String price = txtprice.getText();
     String seats = txtseats.getValue().toString();
     // DateFormat da = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-    String date = txtdept.getText();
+    int row = jTable1.getSelectedRow();
+    int column = 4;
+    String date = (String) jTable1.getModel().getValueAt(row, column);
+    // String date = txtdept.getText();
 
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
