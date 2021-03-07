@@ -514,7 +514,7 @@ class addCustomer extends javax.swing.JInternalFrame {
     // TODO add your handling code here:
   } // GEN-LAST:event_textPassportActionPerformed
 
-  private void jButton1ActionPerformed(
+  public void jButton1ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
 
@@ -548,7 +548,7 @@ class addCustomer extends javax.swing.JInternalFrame {
     }
   } // GEN-LAST:event_jButton1ActionPerformed
 
-  private void jButton2ActionPerformed(
+  protected void jButton2ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
 
