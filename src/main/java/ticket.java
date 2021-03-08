@@ -783,20 +783,24 @@ public class ticket extends javax.swing.JInternalFrame {
   } // GEN-LAST:event_jTable1MouseClicked
 
   private void txtseatsStateChanged(
-          javax.swing.event.ChangeEvent evt) { // GEN-FIRST:event_txtseatsStateChanged
+      javax.swing.event.ChangeEvent evt) { // GEN-FIRST:event_txtseatsStateChanged
     // TODO add your handling code here:
 
     int price = Integer.parseInt(txtprice.getText());
     int qty = Integer.parseInt(txtseats.getValue().toString());
 
-    //int tot = price * qty;
+    // int tot = price * qty;
 
-    txttotal.setText(String.valueOf(calculateTotalPrice(price,qty)));
+    txttotal.setText(String.valueOf(calculateTotalPrice(price, qty)));
   } // GEN-LAST:event_txtseatsStateChanged
 
-    int calculateTotalPrice(int price, int quantity) {
+  int calculateTotalPrice(int price, int quantity) {
+    if (price * quantity < 1) {
+      throw new RuntimeException("Invalid input");
+    } else {
       return price * quantity;
     }
+  }
 
   private void jButton1ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
