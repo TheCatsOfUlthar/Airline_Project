@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
  * and open the template in the editor.
  */
 
+/** The type User creation. */
 class userCreation extends javax.swing.JInternalFrame {
 
   /** Creates new form userCreation */
@@ -251,17 +252,35 @@ class userCreation extends javax.swing.JInternalFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
+  /**
+   * This method takes in four Strings as parameters and verifies that each one matches its
+   * corresponding regex pattern. The patterns check for first and last names that are greater than
+   * zero and less than or equal to twenty characters in length, user names that contain only
+   * upper/lower letters and numbers, and passwords that contain upper/lower letters, numbers, or
+   * symbols. If all Strings match, the method returns true. If one or more fail, the method returns
+   * false.
+   *
+   * @param firstname the users first name
+   * @param lastname the users last name
+   * @param username the desired user name
+   * @param password the desired password
+   * @return the boolean
+   */
   boolean verifyUserInformation(
       String firstname, String lastname, String username, String password) {
 
+    // Regex patterns to check each String parameter.
     Pattern nameWithCharactersFromOneToTwenty = Pattern.compile("[A-Za-z]{1,20}");
     Pattern usernameCharacters = Pattern.compile("[A-Za-z0-9]{1,20}");
     Pattern passwordCharacters = Pattern.compile("[A-Za-z0-9\\W]{1,20}");
+
+    // Verifying that each String parameter matches their Regex patterns.
     Matcher matcher1 = nameWithCharactersFromOneToTwenty.matcher(firstname);
     Matcher matcher2 = nameWithCharactersFromOneToTwenty.matcher(lastname);
     Matcher matcher3 = usernameCharacters.matcher(username);
     Matcher matcher4 = passwordCharacters.matcher(password);
 
+    // Returns boolean true if all Strings match Regex patterns.
     return matcher1.matches() && matcher2.matches() && matcher3.matches() && matcher4.matches();
   }
 

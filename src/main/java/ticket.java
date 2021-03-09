@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
  * and open the template in the editor.
  */
 
+/** The type Ticket. */
 public class ticket extends javax.swing.JInternalFrame {
 
   /** Creates new form ticket */
@@ -711,6 +712,7 @@ public class ticket extends javax.swing.JInternalFrame {
     }
   } // GEN-LAST:event_jButton3ActionPerformed
 
+  /** Auto id. */
   protected void autoID() {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
@@ -794,6 +796,15 @@ public class ticket extends javax.swing.JInternalFrame {
     txttotal.setText(String.valueOf(calculateTotalPrice(price, qty)));
   } // GEN-LAST:event_txtseatsStateChanged
 
+  /**
+   * This method takes the price of the flight and multiplies it by the number of tickets being
+   * bought. The result is the total cost of all the tickets purchased for the flights. If the
+   * quantity being given is a negative, zero, or overflow value, a runtime exception is thrown.
+   *
+   * @param price the price of the flight in question
+   * @param quantity the quantity of tickets the user wishes to purchase
+   * @return the int the total cost of the purchased flight tickets
+   */
   int calculateTotalPrice(int price, int quantity) {
     if (price * quantity < 1) {
       throw new RuntimeException("Invalid input");

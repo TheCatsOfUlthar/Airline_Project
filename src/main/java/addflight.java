@@ -17,10 +17,13 @@ import javax.swing.JOptionPane;
  * and open the template in the editor.
  */
 
+/**
+ * The type Addflight.
+ */
 class addflight extends javax.swing.JInternalFrame {
 
   /** Creates new form addflight */
-  addflight() {
+addflight() {
     initComponents();
     autoID();
   }

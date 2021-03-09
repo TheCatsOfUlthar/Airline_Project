@@ -15,10 +15,13 @@ import javax.swing.table.DefaultTableModel;
  * and open the template in the editor.
  */
 
+/**
+ * The type Ticketreport.
+ */
 class ticketreport extends javax.swing.JInternalFrame {
 
   /** Creates new form ticketreport */
-  ticketreport() {
+ticketreport() {
     initComponents();
     LoadData();
   }

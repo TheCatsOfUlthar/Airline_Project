@@ -21,10 +21,13 @@ import java.util.logging.Logger;
  * and open the template in the editor.
  */
 
+/**
+ * The type Search customer.
+ */
 class searchCustomer extends javax.swing.JInternalFrame {
 
   /** Creates new form addCustomer */
-  searchCustomer() {
+searchCustomer() {
     initComponents();
   }
 

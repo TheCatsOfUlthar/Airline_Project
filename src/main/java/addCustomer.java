@@ -26,6 +26,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * and open the template in the editor.
  */
 
+/** The type Add customer. */
 class addCustomer extends javax.swing.JInternalFrame {
 
   /** Creates new form addCustomer */
@@ -516,6 +517,11 @@ class addCustomer extends javax.swing.JInternalFrame {
     // TODO add your handling code here:
   } // GEN-LAST:event_textPassportActionPerformed
 
+  /**
+   * J button 1 action performed.
+   *
+   * @param evt the evt
+   */
   public void jButton1ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
@@ -550,6 +556,19 @@ class addCustomer extends javax.swing.JInternalFrame {
     }
   } // GEN-LAST:event_jButton1ActionPerformed
 
+  /**
+   * Check user input boolean.
+   *
+   * @param firstName the first name
+   * @param lastName the last name
+   * @param NIC the nic
+   * @param passport the passport
+   * @param address the address
+   * @param date the date
+   * @param gender the gender
+   * @param contact the contact
+   * @return the boolean
+   */
   boolean checkUserInput(
       String firstName,
       String lastName,
@@ -603,6 +622,11 @@ class addCustomer extends javax.swing.JInternalFrame {
     return false;
   }
 
+  /**
+   * J button 2 action performed.
+   *
+   * @param evt the evt
+   */
   protected void jButton2ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
