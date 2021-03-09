@@ -14,6 +14,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -548,6 +550,59 @@ class addCustomer extends javax.swing.JInternalFrame {
     }
   } // GEN-LAST:event_jButton1ActionPerformed
 
+  boolean checkUserInput(
+      String firstName,
+      String lastName,
+      String NIC,
+      String passport,
+      String address,
+      String date,
+      String gender,
+      String contact) {
+
+    /*
+    ID.getClass().getName().equals("String")
+        && firstName.getClass().getName().equals("String")
+        && lastName.getClass().getName().equals("String")
+        && NIC.getClass().getName().equals("String")
+        && passport.getClass().getName().equals("String")
+        && address.getClass().getName().equals("String")
+        && date.getClass().getName().equals("String")
+        && gender.getClass().getName().equals("String")
+        && contact.getClass().getName().equals("String")
+        && userImage.getClass().getName().equals("String")
+     */
+
+    Pattern oneToThirty = Pattern.compile("[a-zA-Z]{1,30}");
+    Pattern regAddress = Pattern.compile("[a-zA-Z0-9\\s]{1,30}");
+    Pattern nineNumbers = Pattern.compile("[a-zA-Z0-9]{9}");
+    Pattern tenNumbers = Pattern.compile("[0-9]{1,10}");
+    Pattern cPlusEightNumbers = Pattern.compile("[a-zA-Z0-9]{8}");
+    Pattern dateString = Pattern.compile("[0-9]{4}-[0-9]{2}-[0-9]{2}");
+
+    Matcher matcher1 = oneToThirty.matcher(firstName);
+    Matcher matcher2 = oneToThirty.matcher(lastName);
+    Matcher matcher3 = regAddress.matcher(address);
+    Matcher matcher4 = nineNumbers.matcher(NIC);
+    Matcher matcher5 = tenNumbers.matcher(contact);
+    Matcher matcher6 = cPlusEightNumbers.matcher(passport);
+    Matcher matcher7 = dateString.matcher(date);
+    Matcher matcher8 = oneToThirty.matcher(gender);
+    System.out.println(date);
+
+    if (matcher1.matches()
+        && matcher2.matches()
+        && matcher3.matches()
+        && matcher4.matches()
+        && matcher5.matches()
+        && matcher6.matches()
+        && matcher7.matches()
+        && matcher8.matches()) {
+      return true;
+    }
+    return false;
+  }
+
   protected void jButton2ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
@@ -564,38 +619,43 @@ class addCustomer extends javax.swing.JInternalFrame {
     String gender;
 
     if (r1.isSelected()) {
-      gender = "Male";
+      gender = "male";
     } else {
-      gender = "FeMale";
+      gender = "female";
     }
 
     String contact = txtContact.getText();
 
-    try {
-      Class.forName("com.mysql.cj.jdbc.Driver");
-      connection =
-          DriverManager.getConnection(
-              "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
-      PreparedStatement preparedStatement =
-          connection.prepareStatement(
-              "INSERT INTO CUSTOMER(ID, firstName, lastName, NIC, passport, address, DOB, gender, contact, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    if (!checkUserInput(firstName, lastName, NIC, passport, address, date, gender, contact)) {
+      System.out.println("Invalid input");
+    } else {
 
-      preparedStatement.setString(1, ID);
-      preparedStatement.setString(2, firstName);
-      preparedStatement.setString(3, lastName);
-      preparedStatement.setString(4, NIC);
-      preparedStatement.setString(5, passport);
-      preparedStatement.setString(6, address);
-      preparedStatement.setString(7, date);
-      preparedStatement.setString(8, gender);
-      preparedStatement.setString(9, contact);
-      preparedStatement.setBytes(10, userImage);
-      preparedStatement.executeUpdate();
+      try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        connection =
+            DriverManager.getConnection(
+                "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
+        PreparedStatement preparedStatement =
+            connection.prepareStatement(
+                "INSERT INTO CUSTOMER(ID, firstName, lastName, NIC, passport, address, DOB, gender, contact, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-      JOptionPane.showMessageDialog(null, "Registration Created.........");
+        preparedStatement.setString(1, ID);
+        preparedStatement.setString(2, firstName);
+        preparedStatement.setString(3, lastName);
+        preparedStatement.setString(4, NIC);
+        preparedStatement.setString(5, passport);
+        preparedStatement.setString(6, address);
+        preparedStatement.setString(7, date);
+        preparedStatement.setString(8, gender);
+        preparedStatement.setString(9, contact);
+        preparedStatement.setBytes(10, userImage);
+        preparedStatement.executeUpdate();
 
-    } catch (ClassNotFoundException | SQLException ex) {
-      Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(null, "Registration Created.........");
+
+      } catch (ClassNotFoundException | SQLException ex) {
+        Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+      }
     }
   } // GEN-LAST:event_jButton2ActionPerformed
 
