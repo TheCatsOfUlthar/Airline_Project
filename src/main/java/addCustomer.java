@@ -626,9 +626,9 @@ class addCustomer extends javax.swing.JInternalFrame {
 
     String contact = txtContact.getText();
 
-    if (!checkUserInput(firstName, lastName, NIC, passport, address, date, gender, contact)) {
-      System.out.println("Invalid input");
-    } else {
+    //if (!checkUserInput(firstName, lastName, NIC, passport, address, date, gender, contact)) {
+    //  System.out.println("Invalid input");
+    //} else {
 
       try {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -656,7 +656,7 @@ class addCustomer extends javax.swing.JInternalFrame {
       } catch (ClassNotFoundException | SQLException ex) {
         Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
       }
-    }
+    //}
   } // GEN-LAST:event_jButton2ActionPerformed
 
   private void jButton3ActionPerformed(

@@ -8,6 +8,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /*
@@ -249,6 +251,20 @@ class userCreation extends javax.swing.JInternalFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
+  boolean verifyUserInformation(
+      String firstname, String lastname, String username, String password) {
+
+    Pattern nameWithCharactersFromOneToTwenty = Pattern.compile("[A-Za-z]{1,20}");
+    Pattern usernameCharacters = Pattern.compile("[A-Za-z0-9]{1,20}");
+    Pattern passwordCharacters = Pattern.compile("[A-Za-z0-9\\W]{1,20}");
+    Matcher matcher1 = nameWithCharactersFromOneToTwenty.matcher(firstname);
+    Matcher matcher2 = nameWithCharactersFromOneToTwenty.matcher(lastname);
+    Matcher matcher3 = usernameCharacters.matcher(username);
+    Matcher matcher4 = passwordCharacters.matcher(password);
+
+    return matcher1.matches() && matcher2.matches() && matcher3.matches() && matcher4.matches();
+  }
+
   private void jButton1ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
@@ -259,26 +275,31 @@ class userCreation extends javax.swing.JInternalFrame {
     String username = txtusername.getText();
     String password = txtpassword.getText();
 
-    try {
-      Class.forName("com.mysql.cj.jdbc.Driver");
-      con =
-          DriverManager.getConnection(
-              "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
-      PreparedStatement pst =
-          con.prepareStatement(
-              "insert into user(id,firstname,lastname,username,password)values(?,?,?,?,?)");
+    if (!verifyUserInformation(firstname, lastname, username, password)) {
+      System.out.println("Invalid Input");
+    } else {
 
-      pst.setString(1, id);
-      pst.setString(2, firstname);
-      pst.setString(3, lastname);
-      pst.setString(4, username);
-      pst.setString(5, password);
+      try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        con =
+            DriverManager.getConnection(
+                "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
+        PreparedStatement pst =
+            con.prepareStatement(
+                "insert into user(id,firstname,lastname,username,password)values(?,?,?,?,?)");
 
-      pst.executeUpdate();
+        pst.setString(1, id);
+        pst.setString(2, firstname);
+        pst.setString(3, lastname);
+        pst.setString(4, username);
+        pst.setString(5, password);
 
-      JOptionPane.showMessageDialog(null, "User Createdd.........");
-    } catch (ClassNotFoundException | SQLException ex) {
-      Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+        pst.executeUpdate();
+
+        JOptionPane.showMessageDialog(null, "User Createdd.........");
+      } catch (ClassNotFoundException | SQLException ex) {
+        Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+      }
     }
   } // GEN-LAST:event_jButton1ActionPerformed
 
