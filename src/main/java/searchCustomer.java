@@ -606,12 +606,16 @@ searchCustomer() {
     // TODO add your handling code here:
 
     String ID = txtCustomerID.getText();
+    searchCustomerInformation(ID, txtPhoto);
 
+  } // GEN-LAST:event_jButton4ActionPerformed
+
+  void searchCustomerInformation(String ID, JLabel txtPhoto) {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
       connection =
-          DriverManager.getConnection(
-              "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
+              DriverManager.getConnection(
+                      "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
       preparedStatement = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE ID = ?");
       preparedStatement.setString(1, ID);
       ResultSet resultSet = preparedStatement.executeQuery();
@@ -633,7 +637,7 @@ searchCustomer() {
         ImageIcon imageIcon = new ImageIcon(imageBytes);
         Image image = imageIcon.getImage();
         Image myImage =
-            image.getScaledInstance(txtPhoto.getWidth(), txtPhoto.getHeight(), Image.SCALE_SMOOTH);
+                image.getScaledInstance(txtPhoto.getWidth(), txtPhoto.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon newImage = new ImageIcon(myImage);
 
         if (gender.equals("Female")) {
@@ -659,7 +663,7 @@ searchCustomer() {
     } catch (ClassNotFoundException | SQLException | ParseException ex) {
       Logger.getLogger(searchCustomer.class.getName()).log(Level.SEVERE, null, ex);
     }
-  } // GEN-LAST:event_jButton4ActionPerformed
+  }
 
   private javax.swing.JRadioButton r1;
   private javax.swing.JRadioButton r2;
