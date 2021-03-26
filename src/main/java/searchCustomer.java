@@ -566,14 +566,21 @@ searchCustomer() {
 
     String contact = txtContact.getText();
 
+    updateCustomer(ID, firstName, lastName, NIC, passport, address, date, gender, contact);
+
+  } // GEN-LAST:event_jButton2ActionPerformed
+
+  void updateCustomer(String ID, String firstName, String lastName, String NIC,
+                      String passport, String address, String date, String gender,
+                      String contact) {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
       connection =
-          DriverManager.getConnection(
-              "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
+              DriverManager.getConnection(
+                      "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
       preparedStatement =
-          connection.prepareStatement(
-              "UPDATE CUSTOMER SET firstName = ?, lastName = ?, NIC = ?, passport = ?, address= ?, DOB = ?, gender = ?, contact = ?, photo = ? WHERE ID = ?");
+              connection.prepareStatement(
+                      "UPDATE CUSTOMER SET firstName = ?, lastName = ?, NIC = ?, passport = ?, address= ?, DOB = ?, gender = ?, contact = ? WHERE ID = ?");
 
       preparedStatement.setString(1, firstName);
       preparedStatement.setString(2, lastName);
@@ -583,16 +590,19 @@ searchCustomer() {
       preparedStatement.setString(6, date);
       preparedStatement.setString(7, gender);
       preparedStatement.setString(8, contact);
-      preparedStatement.setBytes(9, userImage);
-      preparedStatement.setString(10, ID);
-      preparedStatement.executeUpdate();
+      preparedStatement.setString(9, ID);
+      int validID = preparedStatement.executeUpdate();
 
-      JOptionPane.showMessageDialog(null, "Registration Updated.........");
+      if (validID == 0) {
+        JOptionPane.showMessageDialog(null, "Enter a Valid Customer ID.");
+      } else {
+        JOptionPane.showMessageDialog(null, "Registration Updated");
+      }
 
     } catch (ClassNotFoundException | SQLException ex) {
       Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
     }
-  } // GEN-LAST:event_jButton2ActionPerformed
+  }
 
   private void jButton3ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton3ActionPerformed

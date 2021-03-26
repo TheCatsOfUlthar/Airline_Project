@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -22,6 +24,12 @@ public class searchCustomerTest {
     void doesCustomerExist(String id) {
         searchCustomer.searchCustomerInformation(id, txtPhoto);
     }
+
+/*    @Test
+    void shouldThrowException() {
+        Assertions.assertThrows(ClassNotFoundException.class, () ->
+                searchCustomer.searchCustomerInformation("", txtPhoto));
+    }*/
 
     @AfterEach
     void tearDown() {
