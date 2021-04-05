@@ -14,6 +14,7 @@ public class UpdateCustomerTest {
 
     /** Search Customer Object. */
     private searchCustomer searchCustomer;
+    private Customer customer;
 
     /**
      * The before each declarator allows a certain action to happen before each test case. In this
@@ -22,6 +23,7 @@ public class UpdateCustomerTest {
     @BeforeEach
     void setUp() {
         searchCustomer = new searchCustomer();
+        customer = new Customer();
     }
 
     /**
@@ -30,22 +32,12 @@ public class UpdateCustomerTest {
      * This test case will pass if the customer that is being updated is a valid customer in the
      * database.
      *
-     * @param ID - The ID of the user being updated
-     * @param firstName - the first name of the user being updated
-     * @param lastName - the last name of the user being updated
-     * @param NIC - this is the NIC number being updated
-     * @param passport - this is the passport number being updated
-     * @param address - the address of the person being updated
-     * @param date - this is the of the user being updated
-     * @param gender - the gender of the person being updated
-     * @param contact - this is the phone number of the person being updated
+     * @param customer - Customer Object
      */
     @ParameterizedTest
     @MethodSource("testMethodSource")
-    public void updateUserTest(String ID, String firstName, String lastName, String NIC,
-                                     String passport, String address, String date, String gender,
-                                     String contact) {
-       searchCustomer.updateCustomer(ID, firstName, lastName, NIC, passport, address, date, gender, contact);
+    public void updateUserTest(Customer customer) {
+       searchCustomer.updateCustomer(customer);
     }
 
     /**
@@ -56,8 +48,8 @@ public class UpdateCustomerTest {
      */
     static Stream<Arguments> testMethodSource() {
         return Stream.of(
-                Arguments.arguments("", "Sam", "Thomas", "12345678", "123456789", "12720", "1997-17-08", "Male", "12341234"),
-                Arguments.arguments("CS003", "Sam", "Thomas", "12345678", "123456789", "12720", "1997-17-08", "Male", "12341234")
+                Arguments.arguments(new Customer("", "Sam", "Thomas", "12345678", "123456789", "12720", "1997-17-08", "Male", "12341234")),
+                Arguments.arguments(new Customer("CS003", "Sam", "Thomas", "12345678", "123456789", "12720", "1997-17-08", "Male", "12341234"))
         );
     }
 

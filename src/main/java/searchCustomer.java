@@ -33,6 +33,7 @@ searchCustomer() {
 
   private Connection connection;
   private PreparedStatement preparedStatement;
+  private Customer customer;
 
   private byte[] userImage = null;
 
@@ -547,13 +548,6 @@ searchCustomer() {
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
 
-    String ID = txtCustomerID.getText();
-    String firstName = txtFirstName.getText();
-    String lastName = txtLastName.getText();
-    String NIC = txtNIC.getText();
-    String passport = txtPassport.getText();
-    String address = txtAddress.getText();
-
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     String date = dateFormat.format(txtDOB.getDate());
     String gender;
@@ -564,15 +558,14 @@ searchCustomer() {
       gender = "FeMale";
     }
 
-    String contact = txtContact.getText();
+    customer = new Customer(txtCustomerID.getText(), txtFirstName.getText(), txtLastName.getText(),
+            txtNIC.getText(), txtPassport.getText(), txtAddress.getText(), date, gender, txtContact.getText());
 
-    updateCustomer(ID, firstName, lastName, NIC, passport, address, date, gender, contact);
+    updateCustomer(customer);
 
   } // GEN-LAST:event_jButton2ActionPerformed
 
-  void updateCustomer(String ID, String firstName, String lastName, String NIC,
-                      String passport, String address, String date, String gender,
-                      String contact) {
+  void updateCustomer(Customer customer) {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
       connection =
@@ -582,15 +575,15 @@ searchCustomer() {
               connection.prepareStatement(
                       "UPDATE CUSTOMER SET firstName = ?, lastName = ?, NIC = ?, passport = ?, address= ?, DOB = ?, gender = ?, contact = ? WHERE ID = ?");
 
-      preparedStatement.setString(1, firstName);
-      preparedStatement.setString(2, lastName);
-      preparedStatement.setString(3, NIC);
-      preparedStatement.setString(4, passport);
-      preparedStatement.setString(5, address);
-      preparedStatement.setString(6, date);
-      preparedStatement.setString(7, gender);
-      preparedStatement.setString(8, contact);
-      preparedStatement.setString(9, ID);
+      preparedStatement.setString(1, customer.getFirstName());
+      preparedStatement.setString(2, customer.getLastName());
+      preparedStatement.setString(3, customer.getNIC());
+      preparedStatement.setString(4, customer.getPassport());
+      preparedStatement.setString(5, customer.getAddress());
+      preparedStatement.setString(6, customer.getDob());
+      preparedStatement.setString(7, customer.getGender());
+      preparedStatement.setString(8, customer.getContact());
+      preparedStatement.setString(9, customer.getID());
       int validID = preparedStatement.executeUpdate();
 
       if (validID == 0) {

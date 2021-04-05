@@ -36,6 +36,7 @@ class addCustomer extends javax.swing.JInternalFrame {
   }
 
   private Connection connection;
+  private Customer customer;
 
   private byte[] userImage = null;
 
@@ -54,7 +55,7 @@ class addCustomer extends javax.swing.JInternalFrame {
     javax.swing.JLabel jLabel4 = new javax.swing.JLabel();
     javax.swing.JLabel jLabel5 = new javax.swing.JLabel();
     javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
-    javax.swing.JTextArea txtAddress = new javax.swing.JTextArea();
+    /*javax.swing.JTextArea txtAddress = new javax.swing.JTextArea();*/
     javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
     javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
     javax.swing.JLabel jLabel8 = new javax.swing.JLabel();
@@ -93,7 +94,6 @@ class addCustomer extends javax.swing.JInternalFrame {
     txtPassport.addActionListener(this::txtPassportActionPerformed);
 
     txtAddress.setColumns(20);
-    txtAddress.setRows(5);
     jScrollPane1.setViewportView(txtAddress);
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -559,38 +559,10 @@ class addCustomer extends javax.swing.JInternalFrame {
   /**
    * Check user input boolean.
    *
-   * @param firstName the first name
-   * @param lastName the last name
-   * @param NIC the nic
-   * @param passport the passport
-   * @param address the address
-   * @param date the date
-   * @param gender the gender
-   * @param contact the contact
-   * @return the boolean
+   * @param customer - Customer Object
+   * @return the AND of all boolean operations
    */
-  boolean checkUserInput(
-      String firstName,
-      String lastName,
-      String NIC,
-      String passport,
-      String address,
-      String date,
-      String gender,
-      String contact) {
-
-    /*
-    ID.getClass().getName().equals("String")
-        && firstName.getClass().getName().equals("String")
-        && lastName.getClass().getName().equals("String")
-        && NIC.getClass().getName().equals("String")
-        && passport.getClass().getName().equals("String")
-        && address.getClass().getName().equals("String")
-        && date.getClass().getName().equals("String")
-        && gender.getClass().getName().equals("String")
-        && contact.getClass().getName().equals("String")
-        && userImage.getClass().getName().equals("String")
-     */
+  boolean checkUserInput(Customer customer) {
 
     Pattern oneToThirty = Pattern.compile("[a-zA-Z]{1,30}");
     Pattern regAddress = Pattern.compile("[a-zA-Z0-9\\s]{1,30}");
@@ -599,27 +571,23 @@ class addCustomer extends javax.swing.JInternalFrame {
     Pattern cPlusEightNumbers = Pattern.compile("[a-zA-Z0-9]{8}");
     Pattern dateString = Pattern.compile("[0-9]{4}-[0-9]{2}-[0-9]{2}");
 
-    Matcher matcher1 = oneToThirty.matcher(firstName);
-    Matcher matcher2 = oneToThirty.matcher(lastName);
-    Matcher matcher3 = regAddress.matcher(address);
-    Matcher matcher4 = nineNumbers.matcher(NIC);
-    Matcher matcher5 = tenNumbers.matcher(contact);
-    Matcher matcher6 = cPlusEightNumbers.matcher(passport);
-    Matcher matcher7 = dateString.matcher(date);
-    Matcher matcher8 = oneToThirty.matcher(gender);
-    System.out.println(date);
+    Matcher matcher1 = oneToThirty.matcher(customer.getFirstName());
+    Matcher matcher2 = oneToThirty.matcher(customer.getLastName());
+    Matcher matcher3 = regAddress.matcher(customer.getAddress());
+    Matcher matcher4 = nineNumbers.matcher(customer.getNIC());
+    Matcher matcher5 = tenNumbers.matcher(customer.getContact());
+    Matcher matcher6 = cPlusEightNumbers.matcher(customer.getPassport());
+    Matcher matcher7 = dateString.matcher(customer.getDob());
+    Matcher matcher8 = oneToThirty.matcher(customer.getGender());
 
-    if (matcher1.matches()
-        && matcher2.matches()
-        && matcher3.matches()
-        && matcher4.matches()
-        && matcher5.matches()
-        && matcher6.matches()
-        && matcher7.matches()
-        && matcher8.matches()) {
-      return true;
-    }
-    return false;
+    return matcher1.matches()
+            && matcher2.matches()
+            && matcher3.matches()
+            && matcher4.matches()
+            && matcher5.matches()
+            && matcher6.matches()
+            && matcher7.matches()
+            && matcher8.matches();
   }
 
   /**
@@ -631,15 +599,17 @@ class addCustomer extends javax.swing.JInternalFrame {
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
 
-    String ID = txtID.getText();
-    String firstName = txtFirstName.getText();
-    String lastName = txtLastName.getText();
-    String NIC = txtNIC.getText();
-    String passport = txtPassport.getText();
-    String address = txtAddress.getText();
+    customer = new Customer();
+
+    customer.setID(txtID.getText());
+    customer.setFirstName(txtFirstName.getText());
+    customer.setLastName(txtLastName.getText());
+    customer.setNIC(txtNIC.getText());
+    customer.setPassport(txtPassport.getText());
+    customer.setAddress(txtAddress.getText());
 
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    String date = dateFormat.format(txtDOB.getDate());
+    customer.setDob(dateFormat.format(txtDOB.getDate()));
     String gender;
 
     if (r1.isSelected()) {
@@ -647,10 +617,11 @@ class addCustomer extends javax.swing.JInternalFrame {
     } else {
       gender = "female";
     }
+    customer.setGender(gender);
 
-    String contact = txtContact.getText();
+    customer.setContact(txtContact.getText());
 
-    if (!checkUserInput(firstName, lastName, NIC, passport, address, date, gender, contact)) {
+    if (!checkUserInput(customer)) {
       System.out.println("Invalid input");
     } else {
 
@@ -663,15 +634,15 @@ class addCustomer extends javax.swing.JInternalFrame {
             connection.prepareStatement(
                 "INSERT INTO CUSTOMER(ID, firstName, lastName, NIC, passport, address, DOB, gender, contact, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        preparedStatement.setString(1, ID);
-        preparedStatement.setString(2, firstName);
-        preparedStatement.setString(3, lastName);
-        preparedStatement.setString(4, NIC);
-        preparedStatement.setString(5, passport);
-        preparedStatement.setString(6, address);
-        preparedStatement.setString(7, date);
-        preparedStatement.setString(8, gender);
-        preparedStatement.setString(9, contact);
+        preparedStatement.setString(1, customer.getID());
+        preparedStatement.setString(2, customer.getFirstName());
+        preparedStatement.setString(3, customer.getLastName());
+        preparedStatement.setString(4, customer.getNIC());
+        preparedStatement.setString(5, customer.getPassport());
+        preparedStatement.setString(6, customer.getAddress());
+        preparedStatement.setString(7, customer.getDob());
+        preparedStatement.setString(8, customer.getGender());
+        preparedStatement.setString(9, customer.getContact());
         preparedStatement.setBytes(10, userImage);
         preparedStatement.executeUpdate();
 
@@ -699,6 +670,6 @@ class addCustomer extends javax.swing.JInternalFrame {
   private final javax.swing.JTextField txtContact = new javax.swing.JTextField();
   private final javax.swing.JLabel txtPhoto = new javax.swing.JLabel();
   private final javax.swing.JLabel txtID = new javax.swing.JLabel();
-  private final javax.swing.JTextArea txtAddress = new javax.swing.JTextArea();
+  private final javax.swing.JTextField txtAddress = new javax.swing.JTextField();
   // End of variables declaration//GEN-END:variables
 }
