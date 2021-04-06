@@ -49,6 +49,8 @@ class ticketTest {
         RuntimeException.class, () -> ticket.calculateTotalPrice(100, quantity));
   }
 
+
+
   /**
    * The after each declarator allows an action to be performed after each test case. Here we are
    * setting the ticket instantiation for each test case to null which will save memory by allowing

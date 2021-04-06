@@ -561,7 +561,7 @@ class addCustomer extends javax.swing.JInternalFrame {
    *
    * @return the AND of all boolean operations
    */
-  boolean checkUserInput() {
+  private boolean checkUserInput() {
 
     customer = getCustomerInformation();
 
@@ -604,7 +604,7 @@ class addCustomer extends javax.swing.JInternalFrame {
 
   Customer getCustomerInformation() {
 
-    Customer sampleCustomer = new Customer();
+    Customer sampleCustomer = new Customer("","","","","","","","","");
 
     sampleCustomer.setID(txtID.getText());
     sampleCustomer.setFirstName(txtFirstName.getText());
