@@ -34,6 +34,7 @@ searchCustomer() {
   private Connection connection;
   private PreparedStatement preparedStatement;
   private Customer customer;
+  private final Database database = new Database();
 
   private byte[] userImage = null;
 
@@ -567,13 +568,10 @@ searchCustomer() {
 
   void updateCustomer(Customer customer) {
     try {
-      Class.forName("com.mysql.cj.jdbc.Driver");
-      connection =
-              DriverManager.getConnection(
-                      "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
-      preparedStatement =
-              connection.prepareStatement(
-                      "UPDATE CUSTOMER SET firstName = ?, lastName = ?, NIC = ?, passport = ?, address= ?, DOB = ?, gender = ?, contact = ? WHERE ID = ?");
+
+      boolean isWorkingDatabase = database.initializeDatabase();
+
+      preparedStatement = database.setSQLQuery("UPDATE CUSTOMER SET firstName = ?, lastName = ?, NIC = ?, passport = ?, address= ?, DOB = ?, gender = ?, contact = ? WHERE ID = ?");
 
       preparedStatement.setString(1, customer.getFirstName());
       preparedStatement.setString(2, customer.getLastName());
@@ -584,15 +582,15 @@ searchCustomer() {
       preparedStatement.setString(7, customer.getGender());
       preparedStatement.setString(8, customer.getContact());
       preparedStatement.setString(9, customer.getID());
-      int validID = preparedStatement.executeUpdate();
+      int validID = database.executePreparedStatementUpdate(preparedStatement);
 
-      if (validID == 0) {
+      if (validID == 0 || isWorkingDatabase) {
         JOptionPane.showMessageDialog(null, "Enter a Valid Customer ID.");
       } else {
         JOptionPane.showMessageDialog(null, "Registration Updated");
       }
 
-    } catch (ClassNotFoundException | SQLException ex) {
+    } catch (SQLException ex) {
       Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
