@@ -559,10 +559,11 @@ class addCustomer extends javax.swing.JInternalFrame {
   /**
    * Check user input boolean.
    *
-   * @param customer - Customer Object
    * @return the AND of all boolean operations
    */
-  boolean checkUserInput(Customer customer) {
+  boolean checkUserInput() {
+
+    customer = getCustomerInformation();
 
     Pattern oneToThirty = Pattern.compile("[a-zA-Z]{1,30}");
     Pattern regAddress = Pattern.compile("[a-zA-Z0-9\\s]{1,30}");
@@ -580,6 +581,17 @@ class addCustomer extends javax.swing.JInternalFrame {
     Matcher matcher7 = dateString.matcher(customer.getDob());
     Matcher matcher8 = oneToThirty.matcher(customer.getGender());
 
+    //System.out.println(customer.toString());
+/*    System.out.println(matcher1.matches() + " first name");
+    System.out.println(matcher2.matches() + " last name");
+    System.out.println(matcher3.matches() + " address");
+    System.out.println(matcher4.matches() + " nic");
+    System.out.println(matcher5.matches() + " contact");
+    System.out.println(matcher6.matches() + " passport");
+    System.out.println(matcher7.matches() + " dob");
+    System.out.println(matcher8.matches() + " gender");*/
+
+
     return matcher1.matches()
             && matcher2.matches()
             && matcher3.matches()
@@ -588,6 +600,35 @@ class addCustomer extends javax.swing.JInternalFrame {
             && matcher6.matches()
             && matcher7.matches()
             && matcher8.matches();
+  }
+
+  Customer getCustomerInformation() {
+
+    Customer sampleCustomer = new Customer();
+
+    sampleCustomer.setID(txtID.getText());
+    sampleCustomer.setFirstName(txtFirstName.getText());
+    sampleCustomer.setLastName(txtLastName.getText());
+    sampleCustomer.setNIC(txtNIC.getText());
+    sampleCustomer.setPassport(txtPassport.getText());
+    sampleCustomer.setAddress(txtAddress.getText());
+
+    System.out.println(sampleCustomer.getFirstName());
+
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    sampleCustomer.setDob(dateFormat.format(txtDOB.getDate()));
+    System.out.println(sampleCustomer.getDob());
+    String gender;
+
+    if (r1.isSelected()) {
+      gender = "male";
+    } else {
+      gender = "female";
+    }
+    sampleCustomer.setGender(gender);
+    sampleCustomer.setContact(txtContact.getText());
+
+    return sampleCustomer;
   }
 
   /**
@@ -599,30 +640,8 @@ class addCustomer extends javax.swing.JInternalFrame {
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
 
-    customer = new Customer();
-
-    customer.setID(txtID.getText());
-    customer.setFirstName(txtFirstName.getText());
-    customer.setLastName(txtLastName.getText());
-    customer.setNIC(txtNIC.getText());
-    customer.setPassport(txtPassport.getText());
-    customer.setAddress(txtAddress.getText());
-
-    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    customer.setDob(dateFormat.format(txtDOB.getDate()));
-    String gender;
-
-    if (r1.isSelected()) {
-      gender = "male";
-    } else {
-      gender = "female";
-    }
-    customer.setGender(gender);
-
-    customer.setContact(txtContact.getText());
-
-    if (!checkUserInput(customer)) {
-      System.out.println("Invalid input");
+    if (!checkUserInput()) {
+      JOptionPane.showMessageDialog(null, "Invalid Input");
     } else {
 
       try {
@@ -646,7 +665,7 @@ class addCustomer extends javax.swing.JInternalFrame {
         preparedStatement.setBytes(10, userImage);
         preparedStatement.executeUpdate();
 
-        JOptionPane.showMessageDialog(null, "Registration Created.........");
+        JOptionPane.showMessageDialog(null, "Registration Created");
 
       } catch (ClassNotFoundException | SQLException ex) {
         Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
