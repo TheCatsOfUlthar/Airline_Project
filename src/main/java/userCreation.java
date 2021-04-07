@@ -284,6 +284,24 @@ class userCreation extends javax.swing.JInternalFrame {
     return matcher1.matches() && matcher2.matches() && matcher3.matches() && matcher4.matches();
   }
 
+
+  User getUserInformation() {
+
+    User sampleUser = new User("","","","");
+
+    sampleUser.setFirstName(txtfirstname.getText());
+    sampleUser.setLastName(txtlastname.getText());
+    sampleUser.setUserName(txtusername.getText());
+    sampleUser.setPassword(txtpassword.getText());
+
+    System.out.println(sampleUser.getFirstName());
+
+    return sampleUser;
+  }
+
+
+
+
   private void jButton1ActionPerformed(
           java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
