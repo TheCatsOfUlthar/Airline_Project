@@ -813,6 +813,40 @@ public class ticket extends javax.swing.JInternalFrame {
     }
   }
 
+  public void bookFlight(String ticketId, String flightID, String customerId,
+                         String flightClass, String price, String numberOfSeats,
+                         String date) {
+
+    if (Integer.parseInt(numberOfSeats) == 0) {
+      JOptionPane.showMessageDialog(null, "Add the amount seats.");
+    } else {
+      try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        con =
+                DriverManager.getConnection(
+                        "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
+        pst =
+                con.prepareStatement(
+                        "insert into ticket(id,flightid,custid,class,price,seats,date)values(?,?,?,?,?,?,?)");
+
+        pst.setString(1, ticketId);
+        pst.setString(2, flightID);
+        pst.setString(3, customerId);
+        pst.setString(4, flightClass);
+        pst.setString(5, price);
+        pst.setString(6, numberOfSeats);
+        pst.setString(7, date);
+
+        pst.executeUpdate();
+
+        JOptionPane.showMessageDialog(null, "Ticket Booked");
+      } catch (ClassNotFoundException | SQLException ex) {
+        Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    }
+  }
+
+  // this button books the flight
   private void jButton1ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
@@ -829,29 +863,7 @@ public class ticket extends javax.swing.JInternalFrame {
     String date = (String) jTable1.getModel().getValueAt(row, column);
     // String date = txtdept.getText();
 
-    try {
-      Class.forName("com.mysql.cj.jdbc.Driver");
-      con =
-          DriverManager.getConnection(
-              "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
-      pst =
-          con.prepareStatement(
-              "insert into ticket(id,flightid,custid,class,price,seats,date)values(?,?,?,?,?,?,?)");
-
-      pst.setString(1, ticketid);
-      pst.setString(2, flightid);
-      pst.setString(3, custid);
-      pst.setString(4, flightclass);
-      pst.setString(5, price);
-      pst.setString(6, seats);
-      pst.setString(7, date);
-
-      pst.executeUpdate();
-
-      JOptionPane.showMessageDialog(null, "Ticket Bookeed.........");
-    } catch (ClassNotFoundException | SQLException ex) {
-      Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    bookFlight(ticketid, flightid, custid, flightclass, price, seats, date);
   } // GEN-LAST:event_jButton1ActionPerformed
 
   private void jButton2ActionPerformed(

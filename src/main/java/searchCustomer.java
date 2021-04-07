@@ -1,3 +1,5 @@
+import com.toedter.components.JSpinField;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -584,7 +586,7 @@ searchCustomer() {
       preparedStatement.setString(9, customer.getID());
       int validID = database.executePreparedStatementUpdate(preparedStatement);
 
-      if (validID == 0 || isWorkingDatabase) {
+      if (validID == 0 || !isWorkingDatabase) {
         JOptionPane.showMessageDialog(null, "Enter a Valid Customer ID.");
       } else {
         JOptionPane.showMessageDialog(null, "Registration Updated");

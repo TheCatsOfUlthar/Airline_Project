@@ -18,9 +18,7 @@ public class updatingCustomerMock {
         mockDatabase = mock(Database.class);
         searchCustomer = new searchCustomer();
     }
-
-
-
+    
     @Test
     public void testUpdateCustomer() throws SQLException {
         Customer customer = new Customer("CS001", "John", "Alex", "34232222", "3443", "Uk",

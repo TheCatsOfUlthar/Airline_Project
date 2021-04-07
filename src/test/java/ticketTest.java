@@ -1,6 +1,10 @@
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -49,7 +53,46 @@ class ticketTest {
         RuntimeException.class, () -> ticket.calculateTotalPrice(100, quantity));
   }
 
+  /**
+   * This tests the book flight function and to see the actual output look in the database.
+   *
+   * @param ticketId - the ticket id
+   * @param flightID - the flight id
+   * @param customerId - the customer id
+   * @param flightClass - the flight class either economy or business
+   * @param price - the price of the flight
+   * @param numberOfSeats - number of seats being purchased/booked
+   * @param date - the date of the flight
+   */
+  @ParameterizedTest
+  @MethodSource("bookTicketParameters")
+  public void bookTicketTest(String ticketId, String flightID, String customerId,
+                             String flightClass, String price, String numberOfSeats,
+                             String date) {
+    ticket.bookFlight(ticketId, flightID, customerId, flightClass, price, numberOfSeats, date);
+  }
 
+  static Stream<Arguments> bookTicketParameters() {
+    return Stream.of(
+            Arguments.arguments(
+                 "TO999",
+                 "FO001",
+                 "CS001",
+                 "Economy",
+                 "50000",
+                 "0",
+                 "2019-06-14"
+            ),
+            Arguments.arguments(
+                    "TO999",
+                    "FO001",
+                    "CS001",
+                    "Economy",
+                    "50000",
+                    "1",
+                    "2019-06-14"
+            ));
+  }
 
   /**
    * The after each declarator allows an action to be performed after each test case. Here we are

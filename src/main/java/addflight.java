@@ -429,7 +429,7 @@ addflight() {
 
       pst.executeUpdate();
 
-      JOptionPane.showMessageDialog(null, "Flight Createdd.........");
+      JOptionPane.showMessageDialog(null, "Flight Created.");
     } catch (ClassNotFoundException | SQLException ex) {
       Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
     }
