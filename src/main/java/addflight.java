@@ -29,6 +29,7 @@ addflight() {
   }
 
   private Connection con;
+  private Flight flight;
 
   /**
    * This method is called from within the constructor to initialize the form. WARNING: Do NOT
@@ -377,7 +378,7 @@ addflight() {
       Statement s = con.createStatement();
       ResultSet rs = s.executeQuery("select MAX(id) from flight");
       rs.next();
-      rs.getString("MAX(id)");
+      //rs.getString("MAX(id)");
       if (rs.getString("MAX(id)") == null) {
         txtflightid.setText("FO001");
       } else {
@@ -396,36 +397,30 @@ addflight() {
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
 
-    String id = txtflightid.getText();
-    String flightname = txtflightname.getText();
+    flight = getFlightInformation();
+    addFlight(flight);
 
-    String source = Objects.requireNonNull(txtsource.getSelectedItem()).toString().trim();
-    String depart = Objects.requireNonNull(txtdepart.getSelectedItem()).toString().trim();
+  } // GEN-LAST:event_jButton1ActionPerformed
 
-    DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
-    String date = da.format(txtdate.getDate());
-
-    String departtime = txtdtime.getText();
-    String arrtime = txtarrtime.getText();
-    String flightcharge = txtflightcharge.getText();
+  void addFlight(Flight flight1) {
 
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
       con =
-          DriverManager.getConnection(
-              "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
+              DriverManager.getConnection(
+                      "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
       PreparedStatement pst =
-          con.prepareStatement(
-              "insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)values(?,?,?,?,?,?,?,?)");
+              con.prepareStatement(
+                      "insert into flight(id,flightname,source,depart,date,deptime,arrtime,flightcharge)values(?,?,?,?,?,?,?,?)");
 
-      pst.setString(1, id);
-      pst.setString(2, flightname);
-      pst.setString(3, source);
-      pst.setString(4, depart);
-      pst.setString(5, date);
-      pst.setString(6, departtime);
-      pst.setString(7, arrtime);
-      pst.setString(8, flightcharge);
+      pst.setString(1, flight1.getFlightNumber());
+      pst.setString(2, flight1.getFlightName());
+      pst.setString(3, flight1.getFlightSource());
+      pst.setString(4, flight1.getFlightDeparture());
+      pst.setString(5, flight1.getFlightDate());
+      pst.setString(6, flight1.getFlightDepartureTime());
+      pst.setString(7, flight1.getFlightArrivalTime());
+      pst.setString(8, flight1.getFlightPrice());
 
       pst.executeUpdate();
 
@@ -433,7 +428,25 @@ addflight() {
     } catch (ClassNotFoundException | SQLException ex) {
       Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
     }
-  } // GEN-LAST:event_jButton1ActionPerformed
+  }
+
+  // Integration test this
+  public Flight getFlightInformation() {
+    String id = txtflightid.getText();
+    String flightname = txtflightname.getText();
+
+    String source = Objects.requireNonNull(txtsource.getSelectedItem()).toString().trim();
+    String depart = Objects.requireNonNull(txtdepart.getSelectedItem()).toString().trim();
+
+    String departtime = txtdtime.getText();
+    String arrtime = txtarrtime.getText();
+    String flightcharge = txtflightcharge.getText();
+
+    DateFormat da = new SimpleDateFormat("yyyy-MM-dd");
+    String date = da.format(txtdate.getDate());
+
+    return new Flight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
+  }
 
   private void jButton2ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton2ActionPerformed

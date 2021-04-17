@@ -21,7 +21,7 @@ class addCustomerTest {
 
   @Test
   void normalFlight() {
-    Customer customerMock = Mockito.mock(Customer.class);
+    //Customer customerMock = Mockito.mock(Customer.class);
     //when(customerMock).thenReturn()
   }
 

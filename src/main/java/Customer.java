@@ -38,7 +38,7 @@ public class Customer {
   int sumFlightCosts() {
     int sum = 0;
     for (Flight flight : flights) {
-        sum += Integer.parseInt(flight.flightPrice);
+        sum += Integer.parseInt(flight.getFlightPrice());
     }
     return sum;
   }
