@@ -195,16 +195,20 @@ public Login() {
     String username = txtuser.getText();
     String password = txtpass.getText();
 
+    loginUser(username, password);
+  }
+
+  void loginUser(String username, String password) {
     if (username.isEmpty() || password.isEmpty()) {
       JOptionPane.showMessageDialog(this, "UserName or Password Blank");
     } else {
       try {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con =
-            DriverManager.getConnection(
-                "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
+                DriverManager.getConnection(
+                        "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
         PreparedStatement pst =
-            con.prepareStatement("select * from user where username = ? and password = ?");
+                con.prepareStatement("select * from user where username = ? and password = ?");
         pst.setString(1, username);
         pst.setString(2, password);
 
@@ -227,7 +231,7 @@ public Login() {
         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
       }
     }
-  } // GEN-LAST:event_jButton1ActionPerformed
+  }
 
   /**
    * The entry point of application.
