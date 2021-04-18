@@ -35,6 +35,18 @@ public class Customer {
     this.contact = contact;
   }
 
+  Customer() {
+    this.firstName = null;
+    this.lastName = null;
+    this.ID = null;
+    this.NIC = null;
+    this.passport = null;
+    this.address = null;
+    this.dob = null;
+    this.gender = null;
+    this.contact = null;
+  }
+
   int sumFlightCosts() {
     int sum = 0;
     for (Flight flight : flights) {

@@ -38,7 +38,7 @@ class addCustomer extends javax.swing.JInternalFrame {
   private Connection connection;
   private Customer customer;
 
-  private byte[] userImage = null;
+  private byte[] userImage;
 
   /**
    * This method is called from within the constructor to initialize the form. WARNING: Do NOT
@@ -526,6 +526,12 @@ class addCustomer extends javax.swing.JInternalFrame {
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
 
+    getUserImage();
+
+  } // GEN-LAST:event_jButton1ActionPerformed
+
+  void getUserImage() {
+
     try {
       JFileChooser pictureChooser = new JFileChooser();
       pictureChooser.showOpenDialog(null);
@@ -536,10 +542,10 @@ class addCustomer extends javax.swing.JInternalFrame {
       BufferedImage bufferedImage;
       bufferedImage = ImageIO.read(pictureChooser.getSelectedFile());
       ImageIcon imageIcon =
-          new ImageIcon(
-              new ImageIcon(bufferedImage)
-                  .getImage()
-                  .getScaledInstance(250, 250, Image.SCALE_DEFAULT));
+              new ImageIcon(
+                      new ImageIcon(bufferedImage)
+                              .getImage()
+                              .getScaledInstance(250, 250, Image.SCALE_DEFAULT));
       txtPhoto.setIcon(imageIcon);
 
       File image = new File(path);
@@ -550,20 +556,19 @@ class addCustomer extends javax.swing.JInternalFrame {
         stream.write(buffer, 0, readNumber);
       }
       userImage = stream.toByteArray();
+      System.out.println(userImage);
 
     } catch (IOException ex) {
       Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
     }
-  } // GEN-LAST:event_jButton1ActionPerformed
+  }
 
   /**
    * Check user input boolean.
    *
    * @return the AND of all boolean operations
    */
-  private boolean checkUserInput() {
-
-    customer = getCustomerInformation();
+  boolean checkUserInput(Customer customer1) {
 
     Pattern oneToThirty = Pattern.compile("[a-zA-Z]{1,30}");
     Pattern regAddress = Pattern.compile("[a-zA-Z0-9\\s]{1,30}");
@@ -572,14 +577,14 @@ class addCustomer extends javax.swing.JInternalFrame {
     Pattern cPlusEightNumbers = Pattern.compile("[a-zA-Z0-9]{8}");
     Pattern dateString = Pattern.compile("[0-9]{4}-[0-9]{2}-[0-9]{2}");
 
-    Matcher matcher1 = oneToThirty.matcher(customer.getFirstName());
-    Matcher matcher2 = oneToThirty.matcher(customer.getLastName());
-    Matcher matcher3 = regAddress.matcher(customer.getAddress());
-    Matcher matcher4 = nineNumbers.matcher(customer.getNIC());
-    Matcher matcher5 = tenNumbers.matcher(customer.getContact());
-    Matcher matcher6 = cPlusEightNumbers.matcher(customer.getPassport());
-    Matcher matcher7 = dateString.matcher(customer.getDob());
-    Matcher matcher8 = oneToThirty.matcher(customer.getGender());
+    Matcher matcher1 = oneToThirty.matcher(customer1.getFirstName());
+    Matcher matcher2 = oneToThirty.matcher(customer1.getLastName());
+    Matcher matcher3 = regAddress.matcher(customer1.getAddress());
+    Matcher matcher4 = nineNumbers.matcher(customer1.getNIC());
+    Matcher matcher5 = tenNumbers.matcher(customer1.getContact());
+    Matcher matcher6 = cPlusEightNumbers.matcher(customer1.getPassport());
+    Matcher matcher7 = dateString.matcher(customer1.getDob());
+    Matcher matcher8 = oneToThirty.matcher(customer1.getGender());
 
     //System.out.println(customer.toString());
 /*    System.out.println(matcher1.matches() + " first name");
@@ -631,6 +636,7 @@ class addCustomer extends javax.swing.JInternalFrame {
     return sampleCustomer;
   }
 
+  // adds customer
   /**
    * J button 2 action performed.
    *
@@ -640,28 +646,33 @@ class addCustomer extends javax.swing.JInternalFrame {
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
 
-    if (!checkUserInput()) {
+    addCustomerToDatabase(getCustomerInformation());
+
+  } // GEN-LAST:event_jButton2ActionPerformed
+
+  void addCustomerToDatabase(Customer customer1) {
+    if (!checkUserInput(customer1)) {
       JOptionPane.showMessageDialog(null, "Invalid Input");
     } else {
 
       try {
         Class.forName("com.mysql.cj.jdbc.Driver");
         connection =
-            DriverManager.getConnection(
-                "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
+                DriverManager.getConnection(
+                        "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
         PreparedStatement preparedStatement =
-            connection.prepareStatement(
-                "INSERT INTO CUSTOMER(ID, firstName, lastName, NIC, passport, address, DOB, gender, contact, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                connection.prepareStatement(
+                        "INSERT INTO CUSTOMER(ID, firstName, lastName, NIC, passport, address, DOB, gender, contact, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        preparedStatement.setString(1, customer.getID());
-        preparedStatement.setString(2, customer.getFirstName());
-        preparedStatement.setString(3, customer.getLastName());
-        preparedStatement.setString(4, customer.getNIC());
-        preparedStatement.setString(5, customer.getPassport());
-        preparedStatement.setString(6, customer.getAddress());
-        preparedStatement.setString(7, customer.getDob());
-        preparedStatement.setString(8, customer.getGender());
-        preparedStatement.setString(9, customer.getContact());
+        preparedStatement.setString(1, customer1.getID());
+        preparedStatement.setString(2, customer1.getFirstName());
+        preparedStatement.setString(3, customer1.getLastName());
+        preparedStatement.setString(4, customer1.getNIC());
+        preparedStatement.setString(5, customer1.getPassport());
+        preparedStatement.setString(6, customer1.getAddress());
+        preparedStatement.setString(7, customer1.getDob());
+        preparedStatement.setString(8, customer1.getGender());
+        preparedStatement.setString(9, customer1.getContact());
         preparedStatement.setBytes(10, userImage);
         preparedStatement.executeUpdate();
 
@@ -669,9 +680,10 @@ class addCustomer extends javax.swing.JInternalFrame {
 
       } catch (ClassNotFoundException | SQLException ex) {
         Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(null, "Please Choose a Photo.");
       }
     }
-  } // GEN-LAST:event_jButton2ActionPerformed
+  }
 
   private void jButton3ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton3ActionPerformed
@@ -681,7 +693,7 @@ class addCustomer extends javax.swing.JInternalFrame {
   } // GEN-LAST:event_jButton3ActionPerformed
 
   private javax.swing.JRadioButton r1;
-  private final com.toedter.calendar.JDateChooser txtDOB = new com.toedter.calendar.JDateChooser();
+  public com.toedter.calendar.JDateChooser txtDOB = new com.toedter.calendar.JDateChooser();
   private final javax.swing.JTextField txtLastName = new javax.swing.JTextField();
   private final javax.swing.JTextField txtFirstName = new javax.swing.JTextField();
   private final javax.swing.JTextField txtNIC = new javax.swing.JTextField();

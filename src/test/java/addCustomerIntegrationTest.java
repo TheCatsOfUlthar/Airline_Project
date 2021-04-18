@@ -12,6 +12,7 @@ public class addCustomerIntegrationTest {
 
     // This is the mocked Object.
     private addCustomer mockAddCustomer;
+    private Customer sampleCustomer;
 
     /**
      * This method mocks the object every time the a test case is run.
@@ -19,6 +20,8 @@ public class addCustomerIntegrationTest {
     @Before
     public void setup() {
         mockAddCustomer = mock(addCustomer.class);
+        sampleCustomer = new Customer("", "Sam", "Thomas", "123456789",
+                "12345678", "1234", "2016-04-18", "Male", "1234567890");
     }
 
     /**
@@ -28,9 +31,6 @@ public class addCustomerIntegrationTest {
      */
     @Test
     public void testAddCustomerIntegration() {
-        // Sample Customer Object
-        Customer sampleCustomer = new Customer("", "Sam", "Thomas", "123456789",
-                "12345678", "1234", "2016-04-18", "Male", "1234567890");
 
         // when this method is called return the sample customer
         when(mockAddCustomer.getCustomerInformation()).thenReturn(sampleCustomer);
