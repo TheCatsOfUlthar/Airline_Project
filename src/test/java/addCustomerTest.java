@@ -62,15 +62,7 @@ class addCustomerTest {
         }
     }
 
-    @Test
-    void testAddCustomerToDB(Customer customer1){
 
-        Database testConn = new Database();
-
-
-
-
-    }
 
 
 
