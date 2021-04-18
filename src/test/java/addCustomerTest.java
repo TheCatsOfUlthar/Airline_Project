@@ -1,10 +1,11 @@
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,45 +13,68 @@ import static org.mockito.Mockito.when;
 
 class addCustomerTest {
 
-  private addCustomer addCustomer;
-  private Customer sampleCustomer;
 
-  @BeforeEach
-  void setUp() {
-    addCustomer = new addCustomer();
-    Date date = new Date("Wed Feb 06 20:19:13 EST 2019");
-    addCustomer.txtDOB.setDate(date);
+    @BeforeEach
+    void setUp() {
+        List<Flight> flights = new ArrayList<>();
 
-    sampleCustomer = new Customer("Sam", "Thomas", "CS001", "123456789",
-            "12345678", "1234", "2016-04-18", "Male", "1234567890");
+        Flight flight1 = new Flight("1234", "Delta", "RSW", "UJK", "2019-06-14", "8.00AM", "10.00AM", "850");
+        flights.add(flight1);
 
-    List<Flight> flights = new ArrayList<>();
 
-    Flight flight1 = new Flight("1234", "Delta", "RSW", "UJK", "2019-06-14", "8.00AM", "10.00AM", "850");
-    flights.add(flight1);
-  }
+    }
 
-  @Test
-  void normalFlight() {
-    //Customer customerMock = Mockito.mock(Customer.class);
-    //when(customerMock).thenReturn()
-  }
+    @Test
+    void normalFlight() {
+        //Customer customerMock = Mockito.mock(Customer.class);
+        //when(customerMock).thenReturn()
+    }
 
-  /**
-   * Negative Testing - This is to show that if all information is not
-   * filled out, then the customer won't be added to the database. This is
-   * when the photo is not chosen.
-   */
-  @Test
-  void addCustomerToDatabaseTest() {
-    addCustomer.addCustomerToDatabase(sampleCustomer);
-  }
+    @Test
+    void initComponents() {
 
-  @Test
-  void getUserImageTest() {
-    addCustomer.getUserImage();
-  }
+        long startTime = java.util.Calendar.getInstance().getTimeInMillis();
+        new addCustomer().initComponents();
+        long endTime = java.util.Calendar.getInstance().getTimeInMillis();
+        //This tests that the GUI initlization time is less than 5 seconds
+        assertTrue(endTime - startTime <= 5000);
+      System.out.println("GUI Startup time: " + startTime);
+    }
 
-  @AfterEach
-  void tearDown() {}
+    @Test
+    void getDOB() {
+        addCustomer customerView = new addCustomer();
+        customerView.txtDOB.getMaxSelectableDate();
+        assertNotNull(customerView.txtDOB);
+        assertDoesNotThrow(() -> {
+        });
+    }
+
+    @Test
+    void testGetCustomerInformation() {
+
+        addCustomer customerView = new addCustomer();
+
+        if (customerView.txtFirstName.isValid()) {
+            customerView.txtFirstName.setText("testString");
+            String compareValue = "testString";
+            assertEquals(customerView.txtFirstName, compareValue);
+        }
+    }
+
+    @Test
+    void testAddCustomerToDB(Customer customer1){
+
+        Database testConn = new Database();
+
+
+
+
+    }
+
+
+
+    @AfterEach
+    void tearDown() {
+    }
 }

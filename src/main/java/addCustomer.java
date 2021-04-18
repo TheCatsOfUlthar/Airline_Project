@@ -46,7 +46,7 @@ class addCustomer extends javax.swing.JInternalFrame {
    */
 
   // <editor-fold default state="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-  private void initComponents() {
+  public void initComponents() {
 
     javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
     javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
@@ -694,13 +694,13 @@ class addCustomer extends javax.swing.JInternalFrame {
 
   private javax.swing.JRadioButton r1;
   public com.toedter.calendar.JDateChooser txtDOB = new com.toedter.calendar.JDateChooser();
-  private final javax.swing.JTextField txtLastName = new javax.swing.JTextField();
-  private final javax.swing.JTextField txtFirstName = new javax.swing.JTextField();
-  private final javax.swing.JTextField txtNIC = new javax.swing.JTextField();
-  private final javax.swing.JTextField txtPassport = new javax.swing.JTextField();
-  private final javax.swing.JTextField txtContact = new javax.swing.JTextField();
-  private final javax.swing.JLabel txtPhoto = new javax.swing.JLabel();
-  private final javax.swing.JLabel txtID = new javax.swing.JLabel();
-  private final javax.swing.JTextField txtAddress = new javax.swing.JTextField();
+  public final javax.swing.JTextField txtLastName = new javax.swing.JTextField();
+  public final javax.swing.JTextField txtFirstName = new javax.swing.JTextField();
+  public final javax.swing.JTextField txtNIC = new javax.swing.JTextField();
+  public final javax.swing.JTextField txtPassport = new javax.swing.JTextField();
+  public final javax.swing.JTextField txtContact = new javax.swing.JTextField();
+  public final javax.swing.JLabel txtPhoto = new javax.swing.JLabel();
+  public final javax.swing.JLabel txtID = new javax.swing.JLabel();
+  public final javax.swing.JTextField txtAddress = new javax.swing.JTextField();
   // End of variables declaration//GEN-END:variables
 }
