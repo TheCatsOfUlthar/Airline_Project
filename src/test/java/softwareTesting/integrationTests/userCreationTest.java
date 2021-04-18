@@ -1,4 +1,4 @@
-package integrationTests;
+package softwareTesting.integrationTests;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -7,10 +7,8 @@ import org.junit.jupiter.api.Test;
 import softwareTesting.User;
 import softwareTesting.userCreation;
 
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

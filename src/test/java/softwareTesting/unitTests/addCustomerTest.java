@@ -1,9 +1,8 @@
-package unitTests;
+package softwareTesting.unitTests;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import softwareTesting.Customer;
 import softwareTesting.Flight;
 import softwareTesting.addCustomer;
@@ -11,9 +10,6 @@ import softwareTesting.addCustomer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 class addCustomerTest {
 

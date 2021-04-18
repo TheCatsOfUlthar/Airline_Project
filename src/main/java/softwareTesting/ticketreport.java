@@ -116,7 +116,7 @@ public class ticketreport extends javax.swing.JInternalFrame {
     this.hide();
   } // GEN-LAST:event_jButton1ActionPerformed
 
-  void LoadData() {
+  public void LoadData() {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
       Connection con =

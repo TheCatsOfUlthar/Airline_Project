@@ -613,6 +613,8 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 
   } // GEN-LAST:event_jButton4ActionPerformed
 
+
+
   public void searchCustomerInformation(String ID, JLabel txtPhoto) {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");

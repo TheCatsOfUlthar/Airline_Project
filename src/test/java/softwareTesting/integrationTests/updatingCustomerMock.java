@@ -1,4 +1,4 @@
-package integrationTests;
+package softwareTesting.integrationTests;
 
 
 import org.junit.Before;
