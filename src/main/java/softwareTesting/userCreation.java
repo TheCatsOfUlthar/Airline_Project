@@ -260,14 +260,10 @@ public class userCreation extends javax.swing.JInternalFrame {
    * symbols. If all Strings match, the method returns true. If one or more fail, the method returns
    * false.
    *
-   * @param firstname the users first name
-   * @param lastname the users last name
-   * @param username the desired user name
-   * @param password the desired password
+   * @param user - User object
    * @return the boolean
    */
-  public boolean verifyUserInformation(
-          String firstname, String lastname, String username, String password) {
+  public boolean verifyUserInformation(User user) {
 
     // Regex patterns to check each String parameter.
     Pattern nameWithCharactersFromOneToTwenty = Pattern.compile("[A-Za-z]{1,20}");
@@ -275,10 +271,10 @@ public class userCreation extends javax.swing.JInternalFrame {
     Pattern passwordCharacters = Pattern.compile("[A-Za-z0-9\\W]{1,20}");
 
     // Verifying that each String parameter matches their Regex patterns.
-    Matcher matcher1 = nameWithCharactersFromOneToTwenty.matcher(firstname);
-    Matcher matcher2 = nameWithCharactersFromOneToTwenty.matcher(lastname);
-    Matcher matcher3 = usernameCharacters.matcher(username);
-    Matcher matcher4 = passwordCharacters.matcher(password);
+    Matcher matcher1 = nameWithCharactersFromOneToTwenty.matcher(user.getFirstName());
+    Matcher matcher2 = nameWithCharactersFromOneToTwenty.matcher(user.getLastName());
+    Matcher matcher3 = usernameCharacters.matcher(user.getUserName());
+    Matcher matcher4 = passwordCharacters.matcher(user.getPassword());
 
     // Returns boolean true if all Strings match Regex patterns.
     return matcher1.matches() && matcher2.matches() && matcher3.matches() && matcher4.matches();
@@ -287,33 +283,38 @@ public class userCreation extends javax.swing.JInternalFrame {
 
   public User getUserInformation() {
 
-    User sampleUser = new User("","","","");
+    User sampleUser = new User("","","","", "");
 
+    sampleUser.setId(txtuserid.getText());
     sampleUser.setFirstName(txtfirstname.getText());
     sampleUser.setLastName(txtlastname.getText());
     sampleUser.setUserName(txtusername.getText());
     sampleUser.setPassword(txtpassword.getText());
 
-    System.out.println(sampleUser.getFirstName());
-
     return sampleUser;
   }
-
-
-
 
   public void jButton1ActionPerformed(
           java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
 
-    String id = txtuserid.getText();
-    String firstname = txtfirstname.getText();
-    String lastname = txtlastname.getText();
-    String username = txtusername.getText();
-    String password = txtpassword.getText();
+    User user = getUserInformation();
 
-    if (!verifyUserInformation(firstname, lastname, username, password)) {
-      System.out.println("Invalid Input");
+    System.out.println("First Name: " + user.getFirstName());
+
+    createUser(user);
+
+  } // GEN-LAST:event_jButton1ActionPerformed
+
+  /**
+   *
+   * This allows a user to create a new user.
+   *
+   * @param user - User object
+   */
+  public void createUser(User user) {
+    if (!verifyUserInformation(user)) {
+      JOptionPane.showMessageDialog(null, "Invalid Information");
     } else {
 
       try {
@@ -325,20 +326,20 @@ public class userCreation extends javax.swing.JInternalFrame {
                 con.prepareStatement(
                         "insert into user(id,firstname,lastname,username,password)values(?,?,?,?,?)");
 
-        pst.setString(1, id);
-        pst.setString(2, firstname);
-        pst.setString(3, lastname);
-        pst.setString(4, username);
-        pst.setString(5, password);
+        pst.setString(1, user.getId());
+        pst.setString(2, user.getFirstName());
+        pst.setString(3, user.getLastName());
+        pst.setString(4, user.getUserName());
+        pst.setString(5, user.getPassword());
 
         pst.executeUpdate();
 
-        JOptionPane.showMessageDialog(null, "User Createdd.........");
+        JOptionPane.showMessageDialog(null, "User Created");
       } catch (ClassNotFoundException | SQLException ex) {
         Logger.getLogger(addflight.class.getName()).log(Level.SEVERE, null, ex);
       }
     }
-  } // GEN-LAST:event_jButton1ActionPerformed
+  }
 
   public void jButton2ActionPerformed(
           java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton2ActionPerformed

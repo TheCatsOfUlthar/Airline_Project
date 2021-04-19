@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 import softwareTesting.User;
 import softwareTesting.userCreation;
 
+import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /** The type User creation test. */
 class userCreationTest {
@@ -18,8 +18,9 @@ class userCreationTest {
   /** The User creation. */
   private userCreation userCreation;
   private userCreation newUser;
-
-
+  private userCreation userSpy;
+  private User user;
+  private ActionEvent event;
 
   /**
    * The before each declarator allows a certain action to happen before each test case. In this
@@ -29,6 +30,10 @@ class userCreationTest {
   void setUp() {
     newUser = mock(userCreation.class);
     userCreation = new userCreation();
+
+    userSpy = spy(userCreation);
+
+    user = new User("UO900","Robert", "Kissinger", "Rkissinger9134", "123");
   }
 
   /**
@@ -43,19 +48,25 @@ class userCreationTest {
   @Test
   void shouldCheckLoginInput() {
     Assertions.assertTrue(
-        userCreation.verifyUserInformation("Robert", "Kissinger", "Rkissinger9134", "Hello123&&"));
+        userCreation.verifyUserInformation(user));
   }
 
   @Test
   void shouldAddUser() throws SQLException {
 
-    User testUser = new User("Matthew","Donald","mdonald","123");
+    User testUser = new User("", "Matthew","Donald","mdonald","123");
 
     when(newUser.getUserInformation()).thenReturn(testUser);
 
     System.out.println(newUser.getUserInformation());
   }
 
+  @Test
+  void getUserInformationTest() {
+    when(userSpy.getUserInformation()).thenReturn(user);
+
+    userSpy.jButton1ActionPerformed(event);
+  }
 
   /**
    * The after each declarator allows an action to be performed after each test case. Here we are

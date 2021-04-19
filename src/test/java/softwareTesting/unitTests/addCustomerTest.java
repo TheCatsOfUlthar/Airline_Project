@@ -3,6 +3,7 @@ package softwareTesting.unitTests;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import softwareTesting.Customer;
 import softwareTesting.Flight;
 import softwareTesting.addCustomer;
@@ -18,6 +19,7 @@ class addCustomerTest {
 
   private softwareTesting.addCustomer addCustomer;
   private Customer sampleCustomer;
+  private Flight flight1;
 
   @BeforeEach
   void setUp() {
@@ -30,15 +32,17 @@ class addCustomerTest {
 
     List<Flight> flights = new ArrayList<>();
 
-    Flight flight1 = new Flight("1234", "Delta", "RSW", "UJK", "2019-06-14", "8.00AM", "10.00AM", "850");
+    flight1 = new Flight("1234", "Delta", "RSW", "UJK", "2019-06-14", "8.00AM", "10.00AM", "850");
     flights.add(flight1);
   }
 
-  @Test
+  /**
+   * This is a driver to test the functionality between the Customer Class and the Flight class.
+   */
+/*  @Test
   void normalFlight() {
-    //Customer customerMock = Mockito.mock(Customer.class);
-    //when(customerMock).thenReturn()
-  }
+    sampleCustomer.addFlight(flight1);
+  }*/
 
   /**
    * Negative Testing - This is to show that if all information is not
@@ -50,10 +54,10 @@ class addCustomerTest {
     addCustomer.addCustomerToDatabase(sampleCustomer);
   }
 
-  /*@Test
+  @Test
   void getUserImageTest() {
     addCustomer.getUserImage();
-  }*/
+  }
 
   @Test
   void initComponents() {

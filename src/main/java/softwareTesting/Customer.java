@@ -35,9 +35,10 @@ public class Customer {
     this.dob = dob;
     this.gender = gender;
     this.contact = contact;
+    this.flights = new ArrayList<Flight>();
   }
 
-  Customer() {
+/*  Customer() {
     this.firstName = null;
     this.lastName = null;
     this.ID = null;
@@ -47,7 +48,8 @@ public class Customer {
     this.dob = null;
     this.gender = null;
     this.contact = null;
-  }
+    this.flights = new ArrayList<Flight>();
+  }*/
 
   int sumFlightCosts() {
     int sum = 0;

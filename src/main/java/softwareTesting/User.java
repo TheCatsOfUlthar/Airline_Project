@@ -2,18 +2,19 @@ package softwareTesting;
 
 public class User {
 
+    private String id;
     private String firstName;
     private String lastName;
     private String userName;
     private String password;
 
 
-    public User(
+    public User( String id,
       String firstName,
       String lastName,
       String userName,
       String password)
-    {
+    { this.id = id;
      this.firstName = firstName;
      this.lastName = lastName;
      this.userName = userName;
@@ -50,5 +51,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
