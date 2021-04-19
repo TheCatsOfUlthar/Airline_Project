@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class addCustomerTest {
 
   private softwareTesting.addCustomer addCustomer;
@@ -51,6 +54,42 @@ class addCustomerTest {
   void getUserImageTest() {
     addCustomer.getUserImage();
   }*/
+
+  @Test
+  void initComponents() {
+
+    long startTime = java.util.Calendar.getInstance().getTimeInMillis();
+    new addCustomer().initComponents();
+    long endTime = java.util.Calendar.getInstance().getTimeInMillis();
+    //This tests that the GUI initlization time is less than 5 seconds
+    assertTrue(endTime - startTime <= 5000);
+    System.out.println("GUI Startup time: " + startTime);
+  }
+
+  @Test
+  void getDOB() {
+    addCustomer customerView = new addCustomer();
+    customerView.txtDOB.getMaxSelectableDate();
+    assertNotNull(customerView.txtDOB);
+    assertDoesNotThrow(() -> {
+    });
+  }
+
+  @Test
+  void testGetCustomerInformation() {
+
+    addCustomer customerView = new addCustomer();
+
+    if (customerView.txtFirstName.isValid()) {
+      customerView.txtFirstName.setText("testString");
+      String compareValue = "testString";
+      assertEquals(customerView.txtFirstName, compareValue);
+    }
+  }
+
+
+
+
 
   @AfterEach
   void tearDown() {}
