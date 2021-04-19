@@ -547,26 +547,38 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     }
   } // GEN-LAST:event_jButton1ActionPerformed
 
-  private void jButton2ActionPerformed(
+  public void jButton2ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
 
-    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    String date = dateFormat.format(txtDOB.getDate());
+    String date = getDate();
     String gender;
 
-    if (r1.isSelected()) {
+    if (getR1ButtonSelected()) {
       gender = "Male";
     } else {
-      gender = "FeMale";
+      gender = "Female";
     }
 
-    customer = new Customer(txtCustomerID.getText(), txtFirstName.getText(), txtLastName.getText(),
+    customer = new Customer(txtFirstName.getText(), txtLastName.getText(), txtCustomerID.getText(),
             txtNIC.getText(), txtPassport.getText(), txtAddress.getText(), date, gender, txtContact.getText());
 
     updateCustomer(customer);
 
   } // GEN-LAST:event_jButton2ActionPerformed
+
+  public boolean getR1ButtonSelected() {
+    return r1.isSelected();
+  }
+
+  public boolean getR2ButtonSelected() {
+    return r2.isSelected();
+  }
+
+  public String getDate() {
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    return dateFormat.format(txtDOB.getDate());
+  }
 
   public void updateCustomer(Customer customer) {
     try {
@@ -636,6 +648,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
         String DOB = resultSet.getString("dob");
         Date date = new SimpleDateFormat("yyyy-MM-dd").parse(DOB);
         String gender = resultSet.getString("gender");
+        System.out.println(gender);
 
         Blob blob = resultSet.getBlob("photo");
         byte[] imageBytes = blob.getBytes(1, (int) blob.length());
