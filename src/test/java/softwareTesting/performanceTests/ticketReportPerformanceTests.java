@@ -1,4 +1,4 @@
-package softwareTesting.systemTests;
+package softwareTesting.performanceTests;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,7 +7,7 @@ import softwareTesting.ticketreport;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class loadDataTest {
+class ticketReportPerformanceTests {
 
   private softwareTesting.ticketreport ticketreport;
 

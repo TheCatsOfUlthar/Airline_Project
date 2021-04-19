@@ -27,8 +27,17 @@ class addCustomerTest {
     Date date = new Date("Wed Feb 06 20:19:13 EST 2019");
     addCustomer.txtDOB.setDate(date);
 
-    sampleCustomer = new Customer("Sam", "Thomas", "CS001", "123456789",
-            "12345678", "1234", "2016-04-18", "Male", "1234567890");
+    sampleCustomer =
+        new Customer(
+            "Sam",
+            "Thomas",
+            "CS001",
+            "123456789",
+            "12345678",
+            "1234",
+            "2016-04-18",
+            "Male",
+            "1234567890");
 
     List<Flight> flights = new ArrayList<>();
 
@@ -36,18 +45,15 @@ class addCustomerTest {
     flights.add(flight1);
   }
 
-  /**
-   * This is a driver to test the functionality between the Customer Class and the Flight class.
-   */
-/*  @Test
+  /** This is a driver to test the functionality between the Customer Class and the Flight class. */
+  /*  @Test
   void normalFlight() {
     sampleCustomer.addFlight(flight1);
   }*/
 
   /**
-   * Negative Testing - This is to show that if all information is not
-   * filled out, then the customer won't be added to the database. This is
-   * when the photo is not chosen.
+   * Negative Testing - This is to show that if all information is not filled out, then the customer
+   * won't be added to the database. This is when the photo is not chosen.
    */
   @Test
   void addCustomerToDatabaseTest() {
@@ -65,7 +71,7 @@ class addCustomerTest {
     long startTime = java.util.Calendar.getInstance().getTimeInMillis();
     new addCustomer().initComponents();
     long endTime = java.util.Calendar.getInstance().getTimeInMillis();
-    //This tests that the GUI initlization time is less than 5 seconds
+    // This tests that the GUI initlization time is less than 5 seconds
     assertTrue(endTime - startTime <= 5000);
     System.out.println("GUI Startup time: " + startTime);
   }
@@ -75,8 +81,7 @@ class addCustomerTest {
     addCustomer customerView = new addCustomer();
     customerView.txtDOB.getMaxSelectableDate();
     assertNotNull(customerView.txtDOB);
-    assertDoesNotThrow(() -> {
-    });
+    assertDoesNotThrow(() -> {});
   }
 
   @Test
@@ -90,10 +95,6 @@ class addCustomerTest {
       assertEquals(customerView.txtFirstName, compareValue);
     }
   }
-
-
-
-
 
   @AfterEach
   void tearDown() {}
