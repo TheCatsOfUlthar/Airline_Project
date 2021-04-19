@@ -671,11 +671,15 @@ public class ticket extends javax.swing.JInternalFrame {
     String source = Objects.requireNonNull(txtsource.getSelectedItem()).toString().trim();
     String depart = Objects.requireNonNull(txtdepart.getSelectedItem()).toString().trim();
 
+    searchForFlight(source, depart);
+  } // GEN-LAST:event_jButton3ActionPerformed
+
+  public void searchForFlight(String source, String depart) {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
       con =
-          DriverManager.getConnection(
-              "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
+              DriverManager.getConnection(
+                      "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
       pst = con.prepareStatement("SELECT * from flight WHERE source = ? and depart = ?");
 
       pst.setString(1, source);
@@ -689,27 +693,34 @@ public class ticket extends javax.swing.JInternalFrame {
       DefaultTableModel Df = (DefaultTableModel) jTable1.getModel();
       Df.setRowCount(0);
 
-      while (rs.next()) {
-        Vector<String> v2 = new Vector<String>();
+      if(rs.next()) {
+        do {
+          Vector<String> v2 = new Vector<String>();
 
-        for (int i = 1; i <= c; i++) {
-          v2.add(rs.getString("id"));
-          v2.add(rs.getString("flightname"));
-          v2.add(rs.getString("source"));
-          v2.add(rs.getString("depart"));
-          v2.add(rs.getString("date"));
-          v2.add(rs.getString("deptime"));
-          v2.add(rs.getString("arrtime"));
-          v2.add(rs.getString("flightcharge"));
-        }
+          for (int i = 1; i <= c; i++) {
+            v2.add(rs.getString("id"));
+            v2.add(rs.getString("flightname"));
+            v2.add(rs.getString("source"));
+            v2.add(rs.getString("depart"));
+            v2.add(rs.getString("date"));
+            v2.add(rs.getString("deptime"));
+            v2.add(rs.getString("arrtime"));
+            v2.add(rs.getString("flightcharge"));
+          }
 
-        Df.addRow(v2);
+          Df.addRow(v2);
+        } while (rs.next());
+      } else {
+        JOptionPane.showMessageDialog(this, "No Flight Available");
       }
+
+
+
 
     } catch (ClassNotFoundException | SQLException ex) {
       Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
     }
-  } // GEN-LAST:event_jButton3ActionPerformed
+  }
 
   /** Auto id. */
   protected void autoID() {
@@ -741,11 +752,15 @@ public class ticket extends javax.swing.JInternalFrame {
     // TODO add your handling code here:
     String id = txtcustid.getText();
 
+    searchForCustomer(id);
+  } // GEN-LAST:event_jButton4ActionPerformed
+
+  public void searchForCustomer(String id) {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
       con =
-          DriverManager.getConnection(
-              "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
+              DriverManager.getConnection(
+                      "jdbc:mysql://localhost/airline", "root", "Softwaretesting1!");
       pst = con.prepareStatement("select * from customer where id = ?");
       pst.setString(1, id);
       ResultSet rs = pst.executeQuery();
@@ -767,7 +782,7 @@ public class ticket extends javax.swing.JInternalFrame {
     } catch (ClassNotFoundException | SQLException ex) {
       Logger.getLogger(ticket.class.getName()).log(Level.SEVERE, null, ex);
     }
-  } // GEN-LAST:event_jButton4ActionPerformed
+  }
 
   private void jTable1MouseClicked(
       java.awt.event.MouseEvent evt) { // GEN-FIRST:event_jTable1MouseClicked

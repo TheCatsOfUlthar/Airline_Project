@@ -97,6 +97,41 @@ class ticketTest {
             ));
   }
 
+  @ParameterizedTest
+  @MethodSource("searchForCustomerParameters")
+  void searchForCustomerTest(String id) {
+    ticket.searchForCustomer(id);
+  }
+
+  static Stream<Arguments> searchForCustomerParameters() {
+    return Stream.of(
+            Arguments.arguments(
+                    "CS001"
+            ),
+            Arguments.arguments(
+                    ""
+            ));
+  }
+
+  @ParameterizedTest
+  @MethodSource("searchForFlightParameters")
+  void searchForFlightTest(String source, String depart) {
+    ticket.searchForFlight(source, depart);
+  }
+
+
+  static Stream<Arguments> searchForFlightParameters() {
+    return Stream.of(
+            Arguments.arguments(
+                    "India",
+                    "India"
+            ),
+            Arguments.arguments(
+                    "India",
+                    "Uk"
+            ));
+  }
+
   /**
    * The after each declarator allows an action to be performed after each test case. Here we are
    * setting the ticket instantiation for each test case to null which will save memory by allowing
