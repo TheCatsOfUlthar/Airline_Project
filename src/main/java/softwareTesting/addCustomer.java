@@ -644,7 +644,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
    *
    * @param evt the evt
    */
-  protected void jButton2ActionPerformed(
+  public void jButton2ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
 
