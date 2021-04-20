@@ -517,6 +517,10 @@ public class searchCustomer extends javax.swing.JInternalFrame {
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
 
+    getUserImage();
+  } // GEN-LAST:event_jButton1ActionPerformed
+
+  public void getUserImage() {
     try {
       JFileChooser pictureChooser = new JFileChooser();
       pictureChooser.showOpenDialog(null);
@@ -527,10 +531,10 @@ public class searchCustomer extends javax.swing.JInternalFrame {
       BufferedImage bufferedImage;
       bufferedImage = ImageIO.read(pictureChooser.getSelectedFile());
       ImageIcon imageIcon =
-          new ImageIcon(
-              new ImageIcon(bufferedImage)
-                  .getImage()
-                  .getScaledInstance(250, 250, Image.SCALE_DEFAULT));
+              new ImageIcon(
+                      new ImageIcon(bufferedImage)
+                              .getImage()
+                              .getScaledInstance(250, 250, Image.SCALE_DEFAULT));
       txtPhoto.setIcon(imageIcon);
 
       File image = new File(path);
@@ -545,7 +549,7 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     } catch (IOException ex) {
       Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
     }
-  } // GEN-LAST:event_jButton1ActionPerformed
+  }
 
   public void jButton2ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton2ActionPerformed
@@ -569,10 +573,6 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 
   public boolean getR1ButtonSelected() {
     return r1.isSelected();
-  }
-
-  public boolean getR2ButtonSelected() {
-    return r2.isSelected();
   }
 
   public String getDate() {

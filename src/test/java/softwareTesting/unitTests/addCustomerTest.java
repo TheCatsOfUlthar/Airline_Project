@@ -3,6 +3,8 @@ package softwareTesting.unitTests;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mockito;
 import softwareTesting.Customer;
 import softwareTesting.Flight;
@@ -18,10 +20,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 class addCustomerTest {
 
-  private softwareTesting.addCustomer addCustomer;
+  private addCustomer addCustomer;
+  private addCustomer addCustomerSpy;
   private Customer sampleCustomer;
   private Flight flight1;
 
@@ -31,6 +35,8 @@ class addCustomerTest {
     Date date = new Date("Wed Feb 06 20:19:13 EST 2019");
     addCustomer.txtDOB.setDate(date);
 
+    addCustomerSpy = spy(addCustomer);
+
     sampleCustomer = new Customer("Sam", "Thomas", "CS001", "123456789",
             "12345678", "1234", "2016-04-18", "Male", "1234567890");
 
@@ -38,10 +44,6 @@ class addCustomerTest {
 
     flight1 = new Flight("1234", "Delta", "RSW", "UJK", "2019-06-14", "8.00AM", "10.00AM", "850");
     flights.add(flight1);
-
-
-
-
   }
 
   /**
@@ -108,11 +110,15 @@ try {
     }
   }
 
+  @ParameterizedTest
+  @ValueSource(booleans = {true, false})
+  void getCustomerInformationTest(boolean data) {
+    doReturn(sampleCustomer).when(addCustomerSpy).getTextInformation();
+    doReturn(data).when(addCustomerSpy).getR1ButtonSelected();
 
-
-
-
-
+    Customer testCustomer = addCustomerSpy.getCustomerInformation();
+    System.out.println(testCustomer.getGender());
+  }
 
   @AfterEach
   void tearDown() {}

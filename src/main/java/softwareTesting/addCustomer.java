@@ -611,6 +611,21 @@ public class addCustomer extends javax.swing.JInternalFrame {
 
   public Customer getCustomerInformation() {
 
+    Customer sampleCustomer = getTextInformation();
+    String gender;
+
+    if (getR1ButtonSelected()) {
+      gender = "Male";
+    } else {
+      gender = "Female";
+    }
+    sampleCustomer.setGender(gender);
+
+    return sampleCustomer;
+  }
+
+  public Customer getTextInformation() {
+
     Customer sampleCustomer = new Customer("","","","","","","","","");
 
     sampleCustomer.setID(txtID.getText());
@@ -625,17 +640,13 @@ public class addCustomer extends javax.swing.JInternalFrame {
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     sampleCustomer.setDob(dateFormat.format(txtDOB.getDate()));
     System.out.println(sampleCustomer.getDob());
-    String gender;
 
-    if (r1.isSelected()) {
-      gender = "male";
-    } else {
-      gender = "female";
-    }
-    sampleCustomer.setGender(gender);
     sampleCustomer.setContact(txtContact.getText());
-
     return sampleCustomer;
+  }
+
+  public boolean getR1ButtonSelected() {
+    return r1.isSelected();
   }
 
   // adds customer

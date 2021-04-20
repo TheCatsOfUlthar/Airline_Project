@@ -44,6 +44,12 @@ class searchCustomerTest {
         searchCustomer.searchCustomerInformation(id, txtPhoto);
     }
 
+
+    @Test
+    void getUserImageTest() {
+        searchCustomer.getUserImage();
+    }
+
     /**
      * The after each declarator allows an action to be performed after each test case. Here we are
      * setting the searchCustomer instantiation for each test case to null which will save memory by allowing
