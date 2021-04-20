@@ -37,9 +37,14 @@ public class addCustomerIntegrationTest {
     public void testAddCustomerIntegration() {
 
         // when this method is called return the sample customer
-        when(mockAddCustomer.getCustomerInformation()).thenReturn(sampleCustomer);
 
-        // printing out the return of the method
-        System.out.println(mockAddCustomer.getCustomerInformation());
+        try {
+            when(mockAddCustomer.getCustomerInformation()).thenReturn(sampleCustomer);
+
+            // printing out the return of the method
+            System.out.println(mockAddCustomer.getCustomerInformation());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
