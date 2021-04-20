@@ -38,6 +38,10 @@ public class Customer {
     this.flights = new ArrayList<Flight>();
   }
 
+  public Customer() {
+
+  }
+
 /*  Customer() {
     this.firstName = null;
     this.lastName = null;
