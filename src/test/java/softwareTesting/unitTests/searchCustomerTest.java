@@ -44,7 +44,6 @@ class searchCustomerTest {
         searchCustomer.searchCustomerInformation(id, txtPhoto);
     }
 
-
     @Test
     void getUserImageTest() {
         searchCustomer.getUserImage();

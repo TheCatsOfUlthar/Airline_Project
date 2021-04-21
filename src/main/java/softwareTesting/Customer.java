@@ -55,13 +55,13 @@ public class Customer {
     this.flights = new ArrayList<Flight>();
   }*/
 
-  int sumFlightCosts() {
+/*  int sumFlightCosts() {
     int sum = 0;
     for (Flight flight : flights) {
         sum += Integer.parseInt(flight.getFlightPrice());
     }
     return sum;
-  }
+  }*/
 
   public String getFirstName() {
     return firstName;

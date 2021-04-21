@@ -1,6 +1,5 @@
 package softwareTesting.integrationTests;
 
-
 import org.junit.Before;
 import org.junit.Test;
 import softwareTesting.Customer;

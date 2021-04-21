@@ -496,13 +496,10 @@ public class addCustomer extends javax.swing.JInternalFrame {
       ResultSet resultSet = statement.executeQuery("SELECT MAX(ID) from CUSTOMER");
       resultSet.next();
       resultSet.getString("MAX(id)");
-      if (resultSet.getString("MAX(id)") == null) {
-        txtID.setText("CS001");
-      } else {
-        long ID = Long.parseLong(resultSet.getString("MAX(id)").substring(2));
-        ID++;
-        txtID.setText("CS" + String.format("%03d", ID));
-      }
+
+      long ID = Long.parseLong(resultSet.getString("MAX(id)").substring(2));
+      ID++;
+      txtID.setText("CS" + String.format("%03d", ID));
 
     } catch (ClassNotFoundException | SQLException ex) {
       Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);
@@ -512,12 +509,12 @@ public class addCustomer extends javax.swing.JInternalFrame {
   private void txtLastNameActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_textLastNameActionPerformed
     // TODO add your handling code here:
-  } // GEN-LAST:event_textLastNameActionPerformed
+  }
 
   private void txtPassportActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_textPassportActionPerformed
     // TODO add your handling code here:
-  } // GEN-LAST:event_textPassportActionPerformed
+  }
 
   /**
    * J button 1 action performed.
@@ -530,7 +527,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
 
     getUserImage();
 
-  } // GEN-LAST:event_jButton1ActionPerformed
+  }
 
   public void getUserImage() {
 
@@ -570,7 +567,7 @@ public class addCustomer extends javax.swing.JInternalFrame {
    *
    * @return the AND of all boolean operations
    */
-  boolean checkUserInput(Customer customer1) {
+  public boolean checkUserInput(Customer customer1) {
 
     Pattern oneToThirty = Pattern.compile("[a-zA-Z]{1,30}");
     Pattern regAddress = Pattern.compile("[a-zA-Z0-9\\s]{1,30}");
@@ -589,14 +586,6 @@ public class addCustomer extends javax.swing.JInternalFrame {
     Matcher matcher8 = oneToThirty.matcher(customer1.getGender());
 
     //System.out.println(customer.toString());
-/*    System.out.println(matcher1.matches() + " first name");
-    System.out.println(matcher2.matches() + " last name");
-    System.out.println(matcher3.matches() + " address");
-    System.out.println(matcher4.matches() + " nic");
-    System.out.println(matcher5.matches() + " contact");
-    System.out.println(matcher6.matches() + " passport");
-    System.out.println(matcher7.matches() + " dob");
-    System.out.println(matcher8.matches() + " gender");*/
 
 
     return matcher1.matches()
@@ -661,10 +650,10 @@ public class addCustomer extends javax.swing.JInternalFrame {
 
     addCustomerToDatabase(getCustomerInformation());
 
-  } // GEN-LAST:event_jButton2ActionPerformed
+  }
 
   public void addCustomerToDatabase(Customer customer1) {
-    if (!checkUserInput(customer1)) {
+    if (!checkUserInput(customer1)) { // test
       JOptionPane.showMessageDialog(null, "Invalid Input");
     } else {
 
@@ -698,12 +687,12 @@ public class addCustomer extends javax.swing.JInternalFrame {
     }
   }
 
-  private void jButton3ActionPerformed(
+  public void jButton3ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton3ActionPerformed
     // TODO add your handling code here:
 
     this.hide();
-  } // GEN-LAST:event_jButton3ActionPerformed
+  }
 
   private javax.swing.JRadioButton r1;
   public com.toedter.calendar.JDateChooser txtDOB = new com.toedter.calendar.JDateChooser();

@@ -357,14 +357,11 @@ public class userCreation extends javax.swing.JInternalFrame {
       ResultSet rs = s.executeQuery("select MAX(id) from user");
       rs.next();
       rs.getString("MAX(id)");
-      if (rs.getString("MAX(id)") == null) {
-        txtuserid.setText("UO001");
-      } else {
-        long id =
-                Long.parseLong(rs.getString("MAX(id)").substring(2, rs.getString("MAX(id)").length()));
-        id++;
-        txtuserid.setText("UO" + String.format("%03d", id));
-      }
+      txtuserid.setText("UO001");
+      long id =
+              Long.parseLong(rs.getString("MAX(id)").substring(2, rs.getString("MAX(id)").length()));
+      id++;
+      txtuserid.setText("UO" + String.format("%03d", id));
 
     } catch (ClassNotFoundException | SQLException ex) {
       Logger.getLogger(addCustomer.class.getName()).log(Level.SEVERE, null, ex);

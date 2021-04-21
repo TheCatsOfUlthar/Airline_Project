@@ -11,6 +11,7 @@ import softwareTesting.Flight;
 import softwareTesting.addCustomer;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
@@ -28,6 +29,7 @@ class addCustomerTest {
   private addCustomer addCustomerSpy;
   private Customer sampleCustomer;
   private Flight flight1;
+  private ActionEvent actionEvent;
 
   @BeforeEach
   void setUp() {
@@ -62,6 +64,14 @@ class addCustomerTest {
   @Test
   void addCustomerToDatabaseTest() {
     addCustomer.addCustomerToDatabase(sampleCustomer);
+  }
+
+  @ParameterizedTest
+  @ValueSource(booleans = {true, false})
+  void addCustomerToDatabase(boolean data) {
+    doReturn(data).when(addCustomerSpy).checkUserInput(sampleCustomer);
+
+    addCustomerSpy.addCustomerToDatabase(sampleCustomer);
   }
 
   @Test
@@ -118,6 +128,16 @@ try {
 
     Customer testCustomer = addCustomerSpy.getCustomerInformation();
     System.out.println(testCustomer.getGender());
+  }
+
+  @Test
+  void jButton1Test() {
+    addCustomer.jButton2ActionPerformed(actionEvent);
+  }
+
+  @Test
+  void jButton2Test() {
+    addCustomer.jButton3ActionPerformed(actionEvent);
   }
 
   @AfterEach
