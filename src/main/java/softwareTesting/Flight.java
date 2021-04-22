@@ -1,5 +1,9 @@
 package softwareTesting;
 
+/**
+ * Flight Object Class
+ */
+
 public class Flight {
 
   private String flightNumber;

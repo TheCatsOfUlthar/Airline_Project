@@ -375,6 +375,9 @@ public class addflight extends javax.swing.JInternalFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
+  /**
+   * Auto increments ID
+   */
   private void autoID() {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
@@ -397,6 +400,10 @@ public class addflight extends javax.swing.JInternalFrame {
     }
   }
 
+  /**
+   * This method is an ActionEvent when the Add button is clicked, it pulls the flight info from -
+   * the getFlightInformation method, and then passes the variable through the addFlight method.
+   */
   private void jButton1ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
@@ -406,6 +413,9 @@ public class addflight extends javax.swing.JInternalFrame {
 
   } // GEN-LAST:event_jButton1ActionPerformed
 
+  /**
+   * This method will store the flight information into the database.
+   */
   public void addFlight(Flight flight1) {
 
     try {
@@ -452,6 +462,9 @@ public class addflight extends javax.swing.JInternalFrame {
     return new Flight(id, flightname, source, depart, date, departtime, arrtime, flightcharge);
   }
 
+  /**
+   * This method is called when the cancel button is clicked, which hides the add flight report screen.
+   */
   private void jButton2ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:

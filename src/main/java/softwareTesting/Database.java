@@ -5,6 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * Database Class
+ */
+
 public class Database {
 
     private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";

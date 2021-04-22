@@ -522,16 +522,25 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
+  /**
+   * This method calls an ActionEvent for the lastname text box under the search customer screen.
+   */
   private void txtLastNameActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_textLastNameActionPerformed
     // TODO add your handling code here:
   } // GEN-LAST:event_textLastNameActionPerformed
 
+  /**
+   * This method calls an ActionEvent for the passport text box under the search customer screen.
+   */
   private void txtPassportActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_textPassportActionPerformed
     // TODO add your handling code here:
   } // GEN-LAST:event_textPassportActionPerformed
 
+  /**
+   * This method calls an ActionEvent for when the Browse button is selected under the search customer screen.
+   */
   private void jButton1ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
@@ -539,6 +548,10 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     getUserImage();
   } // GEN-LAST:event_jButton1ActionPerformed
 
+  /**
+   * This method gets the user image that the user had uploaded for the customer creation from the database.
+   *
+   */
   public void getUserImage() {
     try {
       JFileChooser pictureChooser = new JFileChooser();
@@ -570,6 +583,11 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     }
   }
 
+  /**
+   * This method calls an ActionEvent for when the Update button is selected under the search customer screen -
+   * and then checks the date, gender, first name, last name, customer ID, NIC, passport, address, contact, -
+   * and then calls the updateCustomer method.
+   */
   public void jButton2ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
@@ -590,15 +608,25 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 
   } // GEN-LAST:event_jButton2ActionPerformed
 
+  /**
+   * This method checks if gender radio button is selected.
+   */
   public boolean getR1ButtonSelected() {
     return r1.isSelected();
   }
 
+  /**
+   * This method gets the date and formats it.
+   */
   public String getDate() {
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     return dateFormat.format(txtDOB.getDate());
   }
 
+  /**
+   * This method updates the customer with the new data information set within the data fields and updates -
+   * the database.
+   */
   public void updateCustomer(Customer customer) {
     try {
 
@@ -628,6 +656,9 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     }
   }
 
+  /**
+   * This method is called when the cancel button is clicked, which hides the search customer screen.
+   */
   private void jButton3ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton3ActionPerformed
     // TODO add your handling code here:
@@ -635,6 +666,10 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     this.hide();
   } // GEN-LAST:event_jButton3ActionPerformed
 
+  /**
+   * This method is called when the find button is clicked in the search customer screen, -
+   * which then checks the customer ID entered in the text box and calls the searchCustomerInformation method.
+   */
   private void jButton4ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton4ActionPerformed
     // TODO add your handling code here:
@@ -644,8 +679,10 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 
   } // GEN-LAST:event_jButton4ActionPerformed
 
-
-
+  /**
+   * This method is called when the find method calls it, which pulls all the data from the database for -
+   * the specific customer ID.
+   */
   public void searchCustomerInformation(String ID, JLabel txtPhoto) {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");

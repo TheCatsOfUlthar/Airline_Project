@@ -280,7 +280,9 @@ public class userCreation extends javax.swing.JInternalFrame {
     return matcher1.matches() && matcher2.matches() && matcher3.matches() && matcher4.matches();
   }
 
-
+  /**
+   * This is a object that will store the new user information.
+   */
   public User getUserInformation() {
 
     User sampleUser = new User("","","","", "");
@@ -294,6 +296,10 @@ public class userCreation extends javax.swing.JInternalFrame {
     return sampleUser;
   }
 
+  /**
+   * This method will trigger an ActionEvent when the add button is clicked, storing the information into -
+   * the user object. Then calling the createUser method and passing through the user object.
+   */
   public void jButton1ActionPerformed(
           java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
@@ -341,12 +347,18 @@ public class userCreation extends javax.swing.JInternalFrame {
     }
   }
 
+  /**
+   * This method is called when the cancel button is clicked, which hides the add ticket report screen.
+   */
   public void jButton2ActionPerformed(
           java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:
     this.hide();
   } // GEN-LAST:event_jButton2ActionPerformed
 
+  /**
+   * Auto increments ID
+   */
   public void autoID() {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");

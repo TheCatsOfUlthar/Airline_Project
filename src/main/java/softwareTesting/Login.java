@@ -190,6 +190,11 @@ public Login() {
     setLocationRelativeTo(null);
   } // </editor-fold>//GEN-END:initComponents
 
+
+  /**
+   * This method is associated with the Login button. It pulls the  data entered for the -
+   * Username and Password, and then calls the loginUser method.
+   */
   private void jButton1ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
@@ -200,6 +205,11 @@ public Login() {
     loginUser(username, password);
   }
 
+  /**
+   * When this method is called, it checks the database with the Username and Password that was -
+   * entered, and if the credentials are incorrect, it will warn the user they do not match, else -
+   * if they do match, the user will be moved to the next screen.
+   */
   public void loginUser(String username, String password) {
     if (username.isEmpty() || password.isEmpty()) {
       JOptionPane.showMessageDialog(this, "UserName or Password Blank");

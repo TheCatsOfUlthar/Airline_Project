@@ -110,12 +110,19 @@ public class ticketreport extends javax.swing.JInternalFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
+  /**
+   * This method is called when the cancel button is clicked, which hides the add ticket report screen.
+   */
   private void jButton1ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
     this.hide();
   } // GEN-LAST:event_jButton1ActionPerformed
 
+  /**
+   * This method will load all the ticket report information from the database and  into -
+   * the ticket report screen.
+   */
   public void LoadData() {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");

@@ -161,6 +161,10 @@ public class Main extends javax.swing.JFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
+  /**
+   * This method is called when the 'Add Customer' button is clicked on the top bar, which then -
+   * calls out addCustomer class.
+   */
   public void jMenuItem1ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jMenuItem1ActionPerformed
     // TODO add your handling code here:
@@ -170,6 +174,10 @@ public class Main extends javax.swing.JFrame {
     cus.setVisible(true);
   } // GEN-LAST:event_jMenuItem1ActionPerformed
 
+  /**
+   * This method is called when the 'Search Customer' button is clicked on the top bar, which then -
+   * calls out searchCustomer class.
+   */
   public void jMenuItem2ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jMenuItem2ActionPerformed
     // TODO add your handling code here:
@@ -180,6 +188,10 @@ public class Main extends javax.swing.JFrame {
   } // GEN-LAST:event_jMenuItem2ActionPerformed
 
 
+  /**
+   * This method is called when the 'Add Flight' button is clicked on the top bar, which then -
+   * calls out addFlight class.
+   */
   public void jMenuItem4ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jMenuItem4ActionPerformed
     // TODO add your handling code here:
@@ -188,6 +200,10 @@ public class Main extends javax.swing.JFrame {
     f.setVisible(true);
   } // GEN-LAST:event_jMenuItem4ActionPerformed
 
+  /**
+   * This method is called when the 'Add Customer' button is clicked on the top bar, which then -
+   * calls out addCustomer class.
+   */
   public void jMenuItem3ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jMenuItem3ActionPerformed
     // TODO add your handling code here:
@@ -196,6 +212,10 @@ public class Main extends javax.swing.JFrame {
     t.setVisible(true);
   } // GEN-LAST:event_jMenuItem3ActionPerformed
 
+  /**
+   * This method is called when the 'Ticket Report' button is clicked on the top bar, which then -
+   * calls our ticketReport class.
+   */
   public void jMenuItem6ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jMenuItem6ActionPerformed
     // TODO add your handling code here:
@@ -205,6 +225,10 @@ public class Main extends javax.swing.JFrame {
     ti.setVisible(true);
   } // GEN-LAST:event_jMenuItem6ActionPerformed
 
+  /**
+   * This method is called when the 'User Creation' button is clicked on the top bar, which then -
+   * calls out userCreation class.
+   */
   public void jMenuItem5ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jMenuItem5ActionPerformed
     // TODO add your handling code here:

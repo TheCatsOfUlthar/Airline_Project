@@ -488,6 +488,9 @@ public class addCustomer extends javax.swing.JInternalFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
+  /**
+   * This method automatically increments the customers ID within the database.
+   */
   public void autoID() {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
@@ -508,11 +511,17 @@ public class addCustomer extends javax.swing.JInternalFrame {
     }
   }
 
+  /**
+   * This method does nothing, but is available for future features.
+   */
   private void txtLastNameActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_textLastNameActionPerformed
     // TODO add your handling code here:
   }
 
+  /**
+   * This method does nothing, but is available for future features.
+   */
   private void txtPassportActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_textPassportActionPerformed
     // TODO add your handling code here:
@@ -531,6 +540,10 @@ public class addCustomer extends javax.swing.JInternalFrame {
 
   }
 
+  /**
+   * This method gets the user image that the user uploads for the customer creation, and then stores the image inside -
+   *  the database associated with the user id.
+   */
   public void getUserImage() {
 
     try {
@@ -600,6 +613,9 @@ public class addCustomer extends javax.swing.JInternalFrame {
             && matcher8.matches();
   }
 
+  /**
+   * This method checks the user input for their gender and sets the gender for the created customer.
+   */
   public Customer getCustomerInformation() {
 
     Customer sampleCustomer = getTextInformation();
@@ -615,6 +631,10 @@ public class addCustomer extends javax.swing.JInternalFrame {
     return sampleCustomer;
   }
 
+  /**
+   * This method checks the user input for their passport ID, first name, last name, Nic number, and address -
+   * for the created customer.
+   */
   public Customer getTextInformation() {
 
     Customer sampleCustomer = new Customer("","","","","","","","","");
@@ -654,6 +674,9 @@ public class addCustomer extends javax.swing.JInternalFrame {
 
   }
 
+  /**
+   * This method pulls the user information inputted and then adds it to the database
+   */
   public void addCustomerToDatabase(Customer customer1) {
     if (!checkUserInput(customer1)) { // test
       JOptionPane.showMessageDialog(null, "Invalid Input");
@@ -689,6 +712,9 @@ public class addCustomer extends javax.swing.JInternalFrame {
     }
   }
 
+  /**
+   * This method is called when the cancel button is clicked, which hides the add customer screen.
+   */
   public void jButton3ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton3ActionPerformed
     // TODO add your handling code here:

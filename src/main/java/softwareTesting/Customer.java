@@ -2,6 +2,10 @@ package softwareTesting;
 
 import java.util.ArrayList;
 
+/**
+ * Customer Object Class
+ */
+
 public class Customer {
 
   private String firstName;

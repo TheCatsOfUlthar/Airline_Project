@@ -674,6 +674,10 @@ public class ticket extends javax.swing.JInternalFrame {
     pack();
   } // </editor-fold>//GEN-END:initComponents
 
+  /**
+   * This method is called when the search button is clicked in the book ticket screen, -
+   * which then checks the source and depart and calls the searchForFlight method.
+   */
   private void jButton3ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton3ActionPerformed
     // TODO add your handling code here:
@@ -684,6 +688,10 @@ public class ticket extends javax.swing.JInternalFrame {
     searchForFlight(source, depart);
   } // GEN-LAST:event_jButton3ActionPerformed
 
+  /**
+   * This method handles the search for flight functionality, it reads from the database based off of -
+   * the source and depart selected. If a flight is not available it will warn the user.
+   */
   public void searchForFlight(String source, String depart) {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
@@ -754,6 +762,10 @@ public class ticket extends javax.swing.JInternalFrame {
     }
   }
 
+  /**
+   * This method is called when the search button is clicked in the book ticket screen, -
+   * which then checks the ID and calls the searchForCustomer method.
+   */
   private void jButton4ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton4ActionPerformed
     // TODO add your handling code here:
@@ -762,6 +774,10 @@ public class ticket extends javax.swing.JInternalFrame {
     searchForCustomer(id);
   } // GEN-LAST:event_jButton4ActionPerformed
 
+  /**
+   * This method handles the search for customer functionality, it reads from the database based off of -
+   * the ID entered. If a customer is not available it will warn the user.
+   */
   public void searchForCustomer(String id) {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
@@ -791,6 +807,9 @@ public class ticket extends javax.swing.JInternalFrame {
     }
   }
 
+  /**
+   * This method checks to see which item the user clicks within the table.
+   */
   private void jTable1MouseClicked(
       java.awt.event.MouseEvent evt) { // GEN-FIRST:event_jTable1MouseClicked
     // TODO add your handling code here:
@@ -805,6 +824,10 @@ public class ticket extends javax.swing.JInternalFrame {
     txtprice.setText(Df.getValueAt(selectIndex, 7).toString());
   } // GEN-LAST:event_jTable1MouseClicked
 
+  /**
+   * This method checks to see when the seats incrementer changes, and pulls the data from the price and -
+   * quantity.
+   */
   private void txtseatsStateChanged(
       javax.swing.event.ChangeEvent evt) { // GEN-FIRST:event_txtseatsStateChanged
     // TODO add your handling code here:
@@ -834,6 +857,9 @@ public class ticket extends javax.swing.JInternalFrame {
     }
   }
 
+  /**
+   * This method takes the following book flight information and enters it into the database.
+   */
   public void bookFlight(String ticketId, String flightID, String customerId,
                          String flightClass, String price, String numberOfSeats,
                          String date) {
@@ -867,6 +893,10 @@ public class ticket extends javax.swing.JInternalFrame {
     }
   }
 
+  /**
+   * This method is an ActionEvent on when the book button is clicked. It pulls the data and calls the -
+   * bookFlight method.
+   */
   // this button books the flight
   private void jButton1ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton1ActionPerformed
@@ -887,6 +917,9 @@ public class ticket extends javax.swing.JInternalFrame {
     bookFlight(ticketid, flightid, custid, flightclass, price, seats, date);
   } // GEN-LAST:event_jButton1ActionPerformed
 
+  /**
+   * This method is called when the cancel button is clicked, which hides the book ticket screen.
+   */
   private void jButton2ActionPerformed(
       java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton2ActionPerformed
     // TODO add your handling code here:

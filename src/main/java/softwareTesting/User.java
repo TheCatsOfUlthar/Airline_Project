@@ -1,5 +1,9 @@
 package softwareTesting;
 
+/**
+ * User Object Class
+ */
+
 public class User {
 
     private String id;
