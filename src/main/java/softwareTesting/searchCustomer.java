@@ -98,6 +98,21 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     jLabel5.setForeground(new java.awt.Color(255, 255, 255));
     jLabel5.setText("Address");
 
+    jLabel1.setName("First Name");
+    jLabel2.setName("Last Name");
+    jLabel3.setName("Nic No");
+    jLabel4.setName("Passport ID");
+    jLabel5.setName("Address");
+
+    txtFirstName.setName("First Name");
+    txtLastName.setName("Last Name");
+    txtNIC.setName("Nic No");
+    txtPassport.setName("Passport ID");
+
+    txtAddress.setName("Address");
+
+    txtCustomerID.setName("Customer ID");
+
     txtLastName.addActionListener(this::txtLastNameActionPerformed);
 
     txtPassport.addActionListener(this::txtPassportActionPerformed);
@@ -241,8 +256,10 @@ public class searchCustomer extends javax.swing.JInternalFrame {
     jLabel10.setText("Contact");
 
     r1.setText("Male");
+    r1.setName("Male");
 
     r2.setText("Female");
+    r2.setName("Female");
 
     javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
     jPanel2.setLayout(jPanel2Layout);
@@ -337,6 +354,8 @@ public class searchCustomer extends javax.swing.JInternalFrame {
 
     jButton4.setText("Find");
     jButton4.addActionListener(this::jButton4ActionPerformed);
+
+    jButton4.setName("Find");
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
