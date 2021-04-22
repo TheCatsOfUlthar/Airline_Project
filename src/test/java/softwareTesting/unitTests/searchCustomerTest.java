@@ -44,6 +44,10 @@ class searchCustomerTest {
         searchCustomer.searchCustomerInformation(id, txtPhoto);
     }
 
+    /**
+     * This is a unit test to test if the user can get select an image
+     * from the file explorer.
+     */
     @Test
     void getUserImageTest() {
         searchCustomer.getUserImage();

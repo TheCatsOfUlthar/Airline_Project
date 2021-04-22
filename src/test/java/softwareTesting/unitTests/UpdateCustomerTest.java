@@ -11,7 +11,6 @@ import softwareTesting.Customer;
 import softwareTesting.Database;
 import softwareTesting.searchCustomer;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -22,7 +21,6 @@ import static org.mockito.Mockito.*;
 /**
  * The Update Customer Test, testing requirement:
  *
- * <p>"The reservation system shall allow a customer account to be edited and updated."
  */
 class UpdateCustomerTest {
 
@@ -102,6 +100,13 @@ class UpdateCustomerTest {
                 "12341234")));
   }
 
+  /**
+   * This test when the Update button is pressed that it updates the customer with the
+   * correct data.
+   *
+   * @param data - true or false, this depends on the radio button selected, true for male
+   *             and false for female
+   */
   @ParameterizedTest
   @ValueSource(booleans = {true, false})
   void selectingRadioButtonTest(boolean data) {
@@ -109,14 +114,6 @@ class UpdateCustomerTest {
     doReturn("1996-06-01").when(searchCustomerSpy).getDate();
 
     searchCustomerSpy.jButton2ActionPerformed(actionEvent);
-  }
-
-  @Test
-  void updateCustomerCatchTest() throws SQLException {
-    Database databaseSpy = mock(Database.class);
-    when(databaseSpy.setSQLQuery("")).thenThrow(SQLException.class);
-
-    searchCustomer.updateCustomer(customer);
   }
 
   /**

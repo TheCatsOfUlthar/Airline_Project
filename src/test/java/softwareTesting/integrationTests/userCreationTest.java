@@ -51,8 +51,12 @@ class userCreationTest {
         userCreation.verifyUserInformation(user));
   }
 
+  /**
+   * This test case is stubbing the method getUserInformation from the userCreation class. It is
+   * outputting the return of the stubbed method.
+   */
   @Test
-  void shouldAddUser() throws SQLException {
+  void shouldAddUser() {
 
     User testUser = new User("", "Matthew","Donald","mdonald","123");
 
@@ -61,6 +65,10 @@ class userCreationTest {
     System.out.println(newUser.getUserInformation());
   }
 
+  /**
+   * This test case tests the method integration between the method getUserInformation and jButton1ActionPerformed
+   * from the userCreation class.
+   */
   @Test
   void getUserInformationTest() {
     when(userSpy.getUserInformation()).thenReturn(user);
@@ -69,9 +77,8 @@ class userCreationTest {
   }
 
   /**
-   * The after each declarator allows an action to be performed after each test case. Here we are
-   * setting the ticket instantiation for each test case to null which will save memory by allowing
-   * the garbage collector to clean up faster.
+   * The after each declarator allows an action to be performed after each test case
+   * test case to null which will save memory by allowing the garbage collector to clean up faster.
    */
   @AfterEach
   void tearDown() {}

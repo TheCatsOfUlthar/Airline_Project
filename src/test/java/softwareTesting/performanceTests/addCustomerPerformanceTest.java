@@ -23,6 +23,9 @@ class addCustomerPerformanceTest {
     return bytes / MEGABYTE;
   }
 
+  /**
+   *
+   */
   @Test
   void autoID() {
     Runtime runtime = Runtime.getRuntime();
@@ -40,6 +43,10 @@ class addCustomerPerformanceTest {
     assertTrue(memory < 20000000 && bytesToMegabytes(memory) < 100);
   }
 
+  /**
+   * The after each declarator allows an action to be performed after each test case
+   * test case to null which will save memory by allowing the garbage collector to clean up faster.
+   */
   @AfterEach
   void tearDown() {
     addCustomer = null;

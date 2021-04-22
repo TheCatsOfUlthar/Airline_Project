@@ -75,6 +75,12 @@ class ticketTest {
     ticket.bookFlight(ticketId, flightID, customerId, flightClass, price, numberOfSeats, date);
   }
 
+  /**
+   * This is used in the bookTicketTest to pass in multiple parameters.
+   *
+   * @return - Stream of Arguments, ticketId, flightID, customerId, flightClass, price, numberOfSeats
+   * and date
+   */
   static Stream<Arguments> bookTicketParameters() {
     return Stream.of(
             Arguments.arguments(
@@ -97,12 +103,23 @@ class ticketTest {
             ));
   }
 
+  /**
+   * This tests the searchForCustomer method in the ticket class. The id of the customer is passed in
+   * and is used to find the customer.
+   *
+   * @param id - id of the customer
+   */
   @ParameterizedTest
   @MethodSource("searchForCustomerParameters")
   void searchForCustomerTest(String id) {
     ticket.searchForCustomer(id);
   }
 
+  /**
+   * This is used in the searchForCustomerTest test to pass in multiple parameters.
+   *
+   * @return - Stream of Arguments, customer id's
+   */
   static Stream<Arguments> searchForCustomerParameters() {
     return Stream.of(
             Arguments.arguments(
@@ -113,13 +130,24 @@ class ticketTest {
             ));
   }
 
+  /**
+   * This tests the feature of search for flights based on source and departure
+   * of flights.
+   *
+   * @param source - where the flight is going to
+   * @param depart - where the flight is taking off from
+   */
   @ParameterizedTest
   @MethodSource("searchForFlightParameters")
   void searchForFlightTest(String source, String depart) {
     ticket.searchForFlight(source, depart);
   }
 
-
+  /**
+   * This is used in the searchForFlightTest to pass in multiple parameters.
+   *
+   * @return - Stream of Arguments, source and departure
+   */
   static Stream<Arguments> searchForFlightParameters() {
     return Stream.of(
             Arguments.arguments(

@@ -1,10 +1,7 @@
 package softwareTesting.integrationTests;
 
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import softwareTesting.Customer;
 import softwareTesting.addCustomer;
 
@@ -20,14 +17,13 @@ import static org.mockito.Mockito.when;
  */
 public class addCustomerIntegrationTest {
 
-    // This is the mocked Object.
     private addCustomer mockAddCustomer;
     private Customer sampleCustomer;
     private ResultSet resultSet;
     private addCustomer addCustomer;
 
     /**
-     * This method mocks the object every time the a test case is run.
+     * This method sets up each variable that is used during the testing phase.
      */
     @BeforeEach
     public void setup() {
@@ -58,6 +54,14 @@ public class addCustomerIntegrationTest {
         }
     }
 
+    /**
+     *
+     * This tests that when nothing is returned for resultSet.getString that the code
+     * can handle that nothing was returned.
+     *
+     * @throws SQLException - ResultSet may not be connected to a database and there for
+     * needs error handling in case that is not.
+     */
     @Test
     void autoIDAddCustomerTest() throws SQLException {
         when(resultSet.getString("MAX(ID)")).thenReturn("");

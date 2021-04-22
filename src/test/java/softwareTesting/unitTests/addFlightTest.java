@@ -9,10 +9,17 @@ import softwareTesting.addflight;
 
 import java.util.stream.Stream;
 
+/**
+ * This test suite holds all the unit tests created for the addFlight class.
+ */
 class addFlightTest {
 
   private softwareTesting.addflight addflight;
 
+  /**
+   * This method is done before each test case that will be run
+   * to have a fresh object everytime.
+   */
   @BeforeEach
   void setUp() {
     addflight = new addflight();
@@ -32,6 +39,12 @@ class addFlightTest {
     addflight.addFlight(testFlight);
   }
 
+  /**
+   * This method is used to pass in multiple parameters to a test case. In this case
+   * it is used to pass in the addingFlightParameters.
+   *
+   * @return - Flight object
+   */
   static Stream<Arguments> addingFlightParameters() {
     return Stream.of(
             Arguments.arguments(
@@ -55,10 +68,4 @@ class addFlightTest {
                             "10.00PM",
                             "999")));
   }
-
-/*  @Test
-  void getInfo() {
-    Flight testFlight = addflight.getFlightInformation();
-    assertTrue(testFlight instanceof Flight);
-  }*/
 }
