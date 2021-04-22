@@ -493,6 +493,7 @@ public class ticket extends javax.swing.JInternalFrame {
     txttotal.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
     txttotal.setForeground(new java.awt.Color(255, 0, 0));
     txttotal.setText("jLabel4");
+    txttotal.setName("jLabel4");
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);

@@ -61,6 +61,10 @@ public class addflight extends javax.swing.JInternalFrame {
     javax.swing.JButton jButton2 = new javax.swing.JButton();
     txtsource = new javax.swing.JComboBox<>();
     txtdepart = new javax.swing.JComboBox<>();
+    txtsource.setName("source");
+    txtdepart.setName("departure");
+    jButton1.setName("jButton1");
+    jButton2.setName("jButton2");
 
     jPanel1.setBackground(new java.awt.Color(51, 51, 255));
 
