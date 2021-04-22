@@ -38,7 +38,7 @@ public class ticket extends javax.swing.JInternalFrame {
    */
   @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-  private void initComponents() {
+  public void initComponents() {
 
     javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
     txtsource = new javax.swing.JComboBox<>();
@@ -212,6 +212,7 @@ public class ticket extends javax.swing.JInternalFrame {
 
     jLabel8.setText("Passportno");
 
+
     txtfirstname.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
     txtfirstname.setForeground(new java.awt.Color(255, 0, 0));
     txtfirstname.setText("jLabel9");
@@ -223,6 +224,10 @@ public class ticket extends javax.swing.JInternalFrame {
     txtpassport.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
     txtpassport.setForeground(new java.awt.Color(255, 0, 0));
     txtpassport.setText("jLabel11");
+
+    txtfirstname.setName("jLabel9");
+    txtlastname.setName("jLabel10");
+    txtpassport.setName("jLabel11");
 
     jButton4.setText("Search");
     jButton4.addActionListener(
@@ -338,6 +343,10 @@ public class ticket extends javax.swing.JInternalFrame {
     txtdept.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
     txtdept.setForeground(new java.awt.Color(255, 0, 0));
     txtdept.setText("jLabel20");
+
+    flightno.setName("jLabel18");
+    flightname.setName("jLabel19");
+    txtdept.setName("jLabel20");
 
     txtclass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"Economy", "Business"}));
 
@@ -885,14 +894,14 @@ public class ticket extends javax.swing.JInternalFrame {
   } // GEN-LAST:event_jButton2ActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JLabel flightname;
-  private javax.swing.JLabel flightno;
-  private javax.swing.JTable jTable1;
-  private javax.swing.JComboBox<String> txtclass;
-  private javax.swing.JTextField txtcustid;
+  public javax.swing.JLabel flightname;
+  public javax.swing.JLabel flightno;
+  public javax.swing.JTable jTable1;
+  public javax.swing.JComboBox<String> txtclass;
+  public javax.swing.JTextField txtcustid;
   private javax.swing.JComboBox<String> txtdepart;
   private javax.swing.JLabel txtdept;
-  private javax.swing.JLabel txtfirstname;
+  public javax.swing.JLabel txtfirstname;
   private javax.swing.JLabel txtlastname;
   private javax.swing.JLabel txtpassport;
   private javax.swing.JTextField txtprice;

@@ -69,6 +69,8 @@ public class addCustomer extends javax.swing.JInternalFrame {
     javax.swing.JButton jButton2 = new javax.swing.JButton();
     javax.swing.JButton jButton3 = new javax.swing.JButton();
 
+    txtAddress.setName("test");
+
     jPanel1.setBackground(new java.awt.Color(51, 0, 255));
 
     jLabel1.setFont(new java.awt.Font("Tahoma", Font.BOLD, 11)); // NOI18N
@@ -704,5 +706,6 @@ public class addCustomer extends javax.swing.JInternalFrame {
   public final javax.swing.JLabel txtPhoto = new javax.swing.JLabel();
   public final javax.swing.JLabel txtID = new javax.swing.JLabel();
   public final javax.swing.JTextField txtAddress = new javax.swing.JTextField();
+
   // End of variables declaration//GEN-END:variables
 }
